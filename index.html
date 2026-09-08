@@ -1,0 +1,1868 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="平均与脉动风速、阵风、湍流度、风谱和风速剖面交互实验"><title>风特性 · 桥梁抗风交互课堂</title><style>:root{--paper:#eef3f8;--white:#fff;--ink:#17324e;--muted:#60748a;--blue:#1469c5;--orange:#c66a24;--line:#d9e3ed;--teal:#187f81;--nav:#102d4a}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.6 'Segoe UI','Microsoft YaHei',sans-serif}button,input,select{font:inherit}button,a,input,select{touch-action:manipulation}button{cursor:pointer;color:inherit}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #21a6bb;outline-offset:4px}a{color:var(--blue)}.sidebar{width:228px;height:100dvh;position:fixed;inset:0 auto 0 0;background:var(--nav);color:#ebf4fc;display:flex;flex-direction:column;padding:32px 18px;z-index:5}.brand{display:flex;gap:12px;align-items:center;padding:0 8px 30px;text-decoration:none;color:inherit;font-weight:700;font-size:22px;line-height:1.4}.brand svg{width:40px;height:40px;fill:none;stroke:#64c6dc;stroke-width:2.5}.brand small{display:block;color:#a9bdd0;font-size:12px;font-weight:400;letter-spacing:1px;margin-top:7px}.nav-label{padding:10px 12px;font-size:12px;color:#93abc0;margin:0}.nav{border:0;background:transparent;width:100%;display:flex;gap:12px;text-align:left;padding:16px 12px;margin:4px 0;border-radius:9px;color:#c2d1de;align-items:center;font-size:15px}.nav>span{font:13px Consolas,monospace;color:#90adc8}.nav small{display:block;font-size:12px;opacity:.75;margin-top:4px}.nav:hover{background:#1b3e5f}.nav.active{background:#e9f3ff;color:#124c84;box-shadow:inset 3px 0 #5bc1d4}.nav.active>span{color:#1469c5}.side-bottom{margin-top:auto;padding:24px 12px 0;color:#aec2d3;font-size:13px}.axis-badge{color:#9bdce3}.side-bottom p{margin:10px 0 20px}.text-button{border:0;background:none;padding:4px 0;font-size:13px;text-align:left;color:inherit}.side-bottom .text-button{display:block;margin:5px 0}.text-button:hover{text-decoration:underline}main{margin-left:228px;padding:0 38px;max-width:1800px}.topbar{display:flex;justify-content:space-between;align-items:center;min-height:74px;border-bottom:1px solid var(--line);font-size:13px;color:var(--muted);gap:10px}.topbar i{font-style:normal;margin:0 10px;color:#aabaca}.topbar>div{display:flex;gap:8px}.button{border:1px solid #bdcddd;background:#fff;border-radius:6px;padding:7px 12px;font-size:13px;white-space:nowrap}.button:hover{border-color:var(--blue);color:var(--blue);background:#f6faff}.heading{display:flex;align-items:center;justify-content:space-between;margin:28px 0 22px}.eyebrow{font:12px Consolas,monospace;color:var(--blue);letter-spacing:1.7px;margin:0 0 6px}h1{font-size:clamp(25px,2.25vw,36px);font-weight:650;letter-spacing:-.6px;line-height:1.35;margin:0}#subtitle{color:var(--muted);font-size:14px;margin:9px 0 0}.lesson-mark{font:600 27px Bahnschrift,'Arial Narrow',sans-serif;letter-spacing:3px;color:#819ab0;text-align:right}.lesson-mark span{display:block;font:11px Consolas,monospace;letter-spacing:2px;margin-top:4px}.parameter-strip{display:grid;grid-template-columns:1fr 1fr 1fr 150px;gap:25px;background:#fff;border:1px solid var(--line);padding:20px 24px;border-radius:10px;margin-bottom:22px}.range-control{display:block;min-width:0;font-size:14px}.range-control>span{display:flex;align-items:baseline;gap:5px}output{font:600 22px Bahnschrift,Consolas,monospace;margin-left:auto;font-variant-numeric:tabular-nums;white-space:nowrap}output small{font-size:12px;font-weight:400;color:var(--muted)}input[type=range]{width:100%;accent-color:var(--blue);height:18px;cursor:pointer;margin:12px 0 0}.range-ends{display:flex;justify-content:space-between;color:#73869a;font:12px Consolas,monospace}.sample-control{border-left:1px solid var(--line);display:flex;flex-wrap:wrap;align-content:center;align-items:center;justify-content:center;gap:10px;font-size:12px;color:var(--muted)}.live-dot{width:6px;height:6px;border-radius:50%;background:var(--teal)}*[hidden]{display:none!important}.wind-intro{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;margin:5px 0 22px}.equation{font:42px Georgia,'Times New Roman',serif;display:grid;grid-template-columns:1fr 30px 1fr 30px 1fr;align-items:center;text-align:center;max-width:570px;padding:10px 0}.equation em{font:27px 'Segoe UI',sans-serif;color:#95a8b9}.equation>div{grid-column:1/-1;display:flex;justify-content:space-around;font:12px 'Microsoft YaHei',sans-serif;color:var(--muted);margin-top:8px}.blue{color:var(--blue)}.orange{color:var(--orange)}.flow-field{height:105px;overflow:hidden;border-left:1px solid var(--line);position:relative}.flow-field svg{width:100%;height:100%}.flow-label{position:absolute;bottom:0;right:5px;font-size:12px;color:var(--muted);background:#eef3f8d9;padding:0 5px}.card{background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-bottom:22px;min-width:0}.card-head{padding:20px 24px 3px;display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.card h2{font-size:17px;font-weight:650;line-height:1.5;margin:0}.card-head p{font-size:14px;color:var(--muted);margin:4px 0 5px}.legend{display:flex;gap:15px;flex-wrap:wrap;font-size:12px;white-space:nowrap;padding-top:5px}.legend span:before{content:'';display:inline-block;width:13px;height:3px;margin-right:6px;vertical-align:middle;background:var(--blue)}.legend .navy-dot:before{background:var(--ink)}.legend .orange-dot:before{background:var(--orange)}.legend .gray-dot:before{background:#91a2b4}.chart{position:relative;width:100%;padding:0 12px;min-height:245px}.chart svg{display:block;width:100%;height:100%;overflow:visible}.chart.compact{min-height:215px}.chart.tall{min-height:320px}.chart.profile{min-height:520px}.chart-foot{display:flex;justify-content:space-between;gap:10px;padding:2px 24px 16px;font-size:12px;color:var(--muted)}.two-col{display:grid;grid-template-columns:1.1fr 1fr;gap:22px}.insight{background:#e1edf7;padding:26px 30px;border-radius:10px;margin-bottom:22px;min-width:0;border:1px solid #d2e2ef}.insight h2{font-size:24px;line-height:1.45;margin:10px 0 14px;font-weight:600;letter-spacing:-.3px}.insight p{font-size:16px;line-height:1.85;color:#465f77}.tag{font-size:12px;font-weight:600;color:var(--blue);letter-spacing:1px}.metric-line{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #c9dbea;margin-top:18px;padding-top:12px;font-size:14px}.metric-line strong{font:500 28px Bahnschrift,Consolas,monospace}.metric-line small{font-size:13px;color:var(--muted);font-weight:400}.note{font-size:12px;line-height:1.8;color:#627b90;margin-top:14px}.formula{font:23px Georgia,'Times New Roman',serif;padding:14px 0;color:var(--ink)}.metric-row{display:grid;grid-template-columns:repeat(4,1fr);margin-bottom:22px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:22px 0}.metric-row>div{padding:0 22px;border-right:1px solid var(--line)}.metric-row>div:last-child{border:0}.metric-row span{display:block;font-size:13px;color:var(--muted)}.metric-row strong{font:500 32px Bahnschrift,Consolas,monospace;white-space:nowrap}.metric-row strong small{font-size:13px;color:var(--muted)}.metric-row .accent strong{color:var(--orange)}.module-tools{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:0 2px 20px}.module-tools label{font-size:14px;display:flex;align-items:center;gap:16px}.module-tools input[type=range]{width:220px;margin:0}.module-tools output{font-size:18px;min-width:62px}.segmented{display:flex;border:1px solid #c3d2df;border-radius:7px;padding:3px;background:#e0e9f1;gap:4px}.segmented button{border:0;background:none;font-size:14px;padding:8px 15px;border-radius:5px}.segmented .active{background:#fff;color:var(--blue);box-shadow:0 2px 5px #193e6610}.check{font-size:14px!important;gap:7px!important}input[type=checkbox]{accent-color:var(--blue);width:16px;height:16px}.spectrum-zones{display:flex;justify-content:space-between;margin:0 70px 14px;border-top:2px solid #deebf6;padding-top:8px;color:var(--muted);font-size:12px}.profile-controls{grid-template-columns:repeat(4,1fr)}.profile-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:22px}.fraction{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;font-size:19px;line-height:1.4}.fraction>span:first-child{border-bottom:1px solid var(--ink)}footer{border-top:1px solid var(--line);padding:22px 0 30px;display:flex;gap:20px;justify-content:space-between;color:#6e8396;font-size:12px;align-items:center}.compare-notice{padding:10px 16px;background:#f9f6ec;border:1px solid #e7ddba;border-radius:6px;margin-bottom:15px;font-size:13px;color:#7a6631}.compare-notice button{float:right;border:0;background:none;font:inherit;color:inherit}.chart-tooltip{pointer-events:none;position:absolute;background:#102d4af2;color:#fff;border-radius:5px;padding:8px 12px;font:12px/1.7 Consolas,'Microsoft YaHei',sans-serif;white-space:nowrap;top:30px;z-index:2;display:none}.chart-tooltip.visible{display:block}.clip-warning{position:absolute;top:8px;right:22px;color:#97501c;background:#fff2df;font-size:12px;padding:2px 6px;border-radius:4px}dialog{border:1px solid var(--line);border-radius:12px;max-width:780px;width:calc(100% - 40px);max-height:85dvh;color:var(--ink);padding:0}dialog::backdrop{background:#09264080;backdrop-filter:blur(3px)}.dialog-head{padding:20px 26px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff}.dialog-head h2{font-size:20px;margin:0}.guide-body{padding:5px 26px 26px;font-size:16px;line-height:1.9}.guide-body h3{margin-top:24px}.guide-body pre{font-size:12px;background:#f0f4f8;padding:14px;overflow:auto;line-height:1.7}.guide-body summary{cursor:pointer;color:var(--blue)}#toast{position:fixed;bottom:25px;left:calc(50% + 100px);transform:translateX(-50%);background:#17324e;color:#fff;border-radius:7px;padding:10px 20px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:20}#toast.visible{opacity:1}.mobile{display:none}@keyframes flow{to{stroke-dashoffset:-300}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}@media(min-width:1600px){main{padding:0 55px}.chart{min-height:280px}.heading{margin-top:32px}}@media(max-width:1150px){.sidebar{width:200px;padding:25px 12px}main{margin-left:200px;padding:0 22px}.brand{font-size:20px}.nav{padding:13px 10px;font-size:14px}.parameter-strip{gap:18px;padding:17px 18px;grid-template-columns:1fr 1fr 1fr}.sample-control{grid-column:1/-1;border-left:0;border-top:1px solid var(--line);padding-top:10px;justify-content:flex-start}.card-head{flex-wrap:wrap}.profile-controls{grid-template-columns:1fr 1fr}.metric-row strong{font-size:27px}.metric-row>div{padding:0 13px}.insight{padding:22px}.insight h2{font-size:22px}}@media(max-width:800px){.sidebar{position:relative;width:100%;height:auto;padding:16px 18px 0}.brand{padding:0 0 15px;font-size:20px}.brand svg{width:31px;height:31px}.brand small{display:inline;margin-left:12px;letter-spacing:0}.sidebar nav{display:flex;overflow:auto;margin:0 -18px;padding:0 10px;gap:3px}.nav{min-width:145px;width:auto;padding:12px 10px;margin:0;border-radius:7px 7px 0 0;font-size:13px;gap:8px}.nav small,.nav-label,.side-bottom{display:none}main{margin-left:0;padding:0 18px}.topbar{min-height:58px}.topbar>span{display:none}.topbar>div{width:100%;justify-content:flex-end}.heading{margin:23px 0 20px}.lesson-mark{display:none}h1{font-size:25px}.parameter-strip{padding:16px;gap:15px}.range-control{font-size:12px}output{font-size:20px}.range-control>span{flex-wrap:wrap}.range-control output{display:block;width:100%;margin:0}.range-ends{font-size:10px}.sample-control{font-size:12px}.wind-intro{grid-template-columns:1fr;margin:0 0 18px}.flow-field{display:none}.equation{max-width:100%;font-size:37px;padding:0}.two-col,.profile-grid{grid-template-columns:1fr}.card-head{padding:18px 16px 0}.chart{padding:0 3px;min-height:240px}.chart.compact{min-height:230px}.chart.tall{min-height:300px}.chart.profile{min-height:430px}.chart-foot{padding-left:16px;padding-right:16px;font-size:11px}.metric-row{grid-template-columns:1fr 1fr;row-gap:20px;padding:18px 0}.metric-row>div:nth-child(2){border:0}.module-tools{flex-wrap:wrap;gap:12px}.module-tools label{gap:10px;font-size:13px}.module-tools input[type=range]{width:140px}.segmented button{padding:7px 9px;font-size:13px}.spectrum-zones{margin-left:53px;margin-right:20px;font-size:11px}.profile-controls{grid-template-columns:1fr 1fr}footer{flex-wrap:wrap;gap:8px}footer>span:nth-child(2){display:none}#toast{left:50%;max-width:95%;width:max-content;font-size:12px}.mobile{display:inline-block}}@media print{.sidebar,.topbar,.parameter-strip,.module-tools,footer,#toast,.compare-notice{display:none}main{margin:0;padding:0}.card,.insight{break-inside:avoid}body{background:#fff}.heading{margin:0 0 20px}}
+
+.definition{display:grid;grid-template-columns:1.4fr 1fr;gap:25px;padding:20px 24px;background:#e0edf8;border-left:4px solid #1469c5;border-radius:7px;margin:0 0 20px}.definition>div:only-child{grid-column:1/-1}.definition strong{font-size:19px}.definition p{font-size:16px;margin:7px 0 0;line-height:1.8}.definition-math{font:23px/1.7 Georgia,'Microsoft YaHei',serif;align-self:center}.plain-example{font-size:17px;line-height:1.9;padding:17px 22px;margin:0 0 20px;border:1px solid #c7d9e9;background:#fff;border-radius:8px}.plain-example .note{display:block}.first-definitions{display:flex;gap:24px;font-size:15px;margin-bottom:16px}.first-definitions p{margin:0;flex:1}.basic-controls{grid-template-columns:1fr 1fr 180px}.advanced-controls{grid-column:1/-1;border-top:1px solid #e0e8ef;padding-top:10px;font-size:14px}.advanced-controls summary{cursor:pointer;color:#55748f}.advanced-controls p{font-size:14px;color:#60748a;margin:10px 0;max-width:700px}.advanced-controls .range-control{max-width:400px;margin-top:12px}.basic-controls .sample-control{grid-column:auto;border-top:0;padding-top:0;border-left:1px solid var(--line)}.scan-controls{display:flex;gap:10px;align-items:center;margin:8px 0 16px}.scan-controls label{display:flex;align-items:center;gap:10px;flex:1;font-size:14px;margin-left:10px}.scan-controls input{margin:0;flex:1;min-width:60px}.primary{background:#1469c5;color:#fff;border-color:#1469c5}.primary:hover{background:#1057a2;color:#fff}.process-caption{font-size:15px;line-height:1.8;color:#466780;margin:8px 0 18px}.process-caption span{margin:0 8px;color:#a0b2c0}.scan-readings{display:flex;align-items:center;justify-content:center;gap:30px;padding:0 20px 20px}.scan-readings>div{background:#f8ede2;border:1px solid #ead0b4;border-radius:7px;padding:12px 20px;min-width:230px}.scan-readings>div:last-child{background:#e2f0ef;border-color:#bdd9d6}.scan-readings span{display:block;font-size:14px}.scan-readings strong{font:500 28px/1.5 Bahnschrift,Consolas,monospace;color:#9f4c15}.scan-readings>div:last-child strong{color:#176b6d}.scan-readings small{font-size:14px}.readings-arrow{color:#71889c;font-size:14px}.preset-buttons{display:flex;gap:8px}.learn-more{border:1px solid #ccdae6;background:#fff;border-radius:8px;padding:18px 22px;margin-bottom:22px}.learn-more>summary{cursor:pointer;font-size:16px;color:#235e95}.learn-more>p{font-size:16px;line-height:1.85}.learn-more .card{border:0;margin:0}.compact-more{padding:12px 20px}.spacing-panel{display:flex;gap:20px;align-items:center;justify-content:space-between;margin-bottom:6px}.spacing-panel>label{display:flex;gap:16px;align-items:center;font-size:16px;flex:1}.spacing-panel input{width:180px;margin:0;flex:1}.spacing-panel output{font-size:24px;min-width:75px}#bridgePoints{max-width:650px;margin:0 auto 20px}#bridgePoints svg{width:100%;height:130px;font:16px 'Segoe UI','Microsoft YaHei',sans-serif;fill:#17324e}.corr-matrix{width:100%;border-spacing:4px;font:500 18px Bahnschrift,Consolas,monospace;text-align:center;margin-top:15px}.corr-matrix caption{font:13px 'Microsoft YaHei',sans-serif;color:#60748a;margin-bottom:7px}.corr-matrix th{font-size:15px;font-weight:500}.corr-matrix td{padding:10px;border-radius:5px}.lesson-pager{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 0 28px;font-size:13px;color:#60748a}.lesson-pager .button{font-size:15px;padding:10px 16px}.lesson-pager .button:last-child{background:#e0edf8;border-color:#bbd2e7;color:#1469c5}.button:disabled{opacity:.4;cursor:default}.chart svg{font-size:13px!important}.note{font-size:13px}.insight .note{font-size:13px}.range-ends{font-size:12px}
+@media(max-width:1150px){.definition{grid-template-columns:1fr}.definition-math{font-size:22px}.basic-controls{grid-template-columns:1fr 1fr 140px}.scan-readings{gap:12px}.scan-readings>div{min-width:180px;padding:12px 16px}.spacing-panel{flex-wrap:wrap}.spacing-panel>label{min-width:100%}}
+@media(max-width:800px){body{font-size:16px}.sidebar{padding:12px 14px 0}.brand{padding-bottom:12px;font-size:19px}.brand small{font-size:12px}.sidebar nav{gap:2px;padding:0 8px;margin:0 -14px}.nav{min-width:134px;padding:11px 9px;font-size:14px;line-height:1.35}.nav>span{font-size:12px}main{padding:0 14px}.topbar{min-height:48px}.topbar .button{font-size:12px;padding:5px 9px}.heading{margin:18px 0 16px}.eyebrow{font-size:11px;margin-bottom:6px}h1{font-size:24px;line-height:1.5}#subtitle{font-size:15px;line-height:1.7;margin-top:6px}.parameter-strip{margin-bottom:18px;padding:14px;gap:13px}.basic-controls{grid-template-columns:1fr 1fr}.range-control{font-size:14px}.range-control output{font-size:23px;margin-top:6px}input[type=range]{height:26px;margin-top:8px}.basic-controls .sample-control{grid-column:1/-1;justify-content:flex-start;border:0;border-top:1px solid var(--line);padding-top:10px;font-size:13px;gap:8px}.sample-control .button{margin-left:auto}.advanced-controls{padding-top:8px}.advanced-controls summary{font-size:14px}.advanced-controls p{font-size:14px}.first-definitions{display:block;margin:0 0 16px;font-size:15px}.first-definitions p{margin:6px 0}.equation{font-size:33px}.equation>div{font-size:12px;margin-top:6px}.wind-intro{margin-bottom:15px}.definition{padding:16px 17px;gap:10px;margin-bottom:18px}.definition strong{font-size:18px}.definition p{font-size:16px}.definition-math{font-size:20px}.card{margin-bottom:18px}.card-head h2{font-size:17px;line-height:1.6}.card-head p{font-size:14px;line-height:1.7}.card-head{padding:16px 14px 3px}.legend{font-size:12px;gap:12px;padding:2px 0 6px}.chart{padding:0 3px;min-height:230px}.chart svg{font-size:13px!important}.chart-foot{font-size:12px;line-height:1.7;flex-wrap:wrap;padding:3px 14px 14px}.insight{padding:20px;margin-bottom:18px}.insight h2{font-size:22px}.insight p{font-size:16px}.two-col{gap:0}.module-tools{gap:10px;padding-bottom:12px}.module-tools>label{width:100%;font-size:15px}.module-tools input[type=range]{width:auto;flex:1;min-width:70px}.module-tools output{font-size:20px}.scan-controls{flex-wrap:wrap;margin:8px 0 14px}.scan-controls .button{font-size:14px;padding:9px 12px}.scan-controls label{flex-basis:100%;margin:4px 0 0;font-size:14px;line-height:1.5}.scan-controls input{height:30px}.process-caption{font-size:14px;line-height:1.9}.process-caption span{margin:0 4px}.scan-readings{padding:0 0 18px;display:grid;grid-template-columns:1fr 1fr;gap:10px}.scan-readings>div{min-width:0;padding:12px}.scan-readings span{font-size:13px;line-height:1.6}.scan-readings strong{font-size:25px}.scan-readings .readings-arrow{display:none}.plain-example{padding:16px;font-size:16px}.metric-row{row-gap:18px;padding:18px 0}.metric-row span{font-size:13px;line-height:1.65}.metric-row strong{font-size:27px}.note{font-size:13px;line-height:1.85}.learn-more{padding:15px;margin-bottom:18px}.learn-more>summary{font-size:15px}.learn-more>p{font-size:15px}.spacing-panel{gap:12px}.spacing-panel>label{font-size:15px;gap:9px}.spacing-panel input{min-width:70px;width:auto}.spacing-panel output{font-size:22px;min-width:58px}.preset-buttons{gap:6px;flex-wrap:wrap}.preset-buttons .button{font-size:13px;padding:7px 10px}#bridgePoints{margin-bottom:15px}#bridgePoints svg{height:120px}.corr-matrix td{padding:12px}.lesson-pager{gap:8px;padding:7px 0 22px}.lesson-pager .button{padding:10px 12px;font-size:13px}.lesson-pager>span{font-size:12px;white-space:nowrap}footer{padding:16px 0 22px}.segmented{width:100%}.segmented button{flex:1;font-size:13px}.profile-grid{gap:0}.profile-controls .range-control{font-size:14px}.spectrum-zones{font-size:12px;gap:10px;margin-left:50px;margin-right:15px}}
+@media(max-width:360px){main{padding:0 10px}.topbar>div{gap:5px}.topbar .button{padding:5px 7px;font-size:11px}.heading h1{font-size:22px}.scan-readings strong{font-size:22px}.lesson-pager .button{font-size:12px;padding:9px}.range-ends{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.lesson-pager{scroll-behavior:auto}}@media print{.lesson-pager,.scan-controls,.spacing-panel{display:none}.definition{break-inside:avoid}}
+
+.scatter-note{font-size:12px;color:#60748a;margin:0 12px 14px;line-height:1.75}@media(max-width:800px){.nav{min-height:48px}.scan-controls .button{min-height:44px}.preset-buttons .button{min-height:40px}.scatter-note{font-size:12px;margin:0 14px 14px}}
+</style></head><body>
+<aside class="sidebar"><a class="brand" href="#wind"><svg viewBox="0 0 44 44" aria-hidden="true"><path d="M5 13h25c10 0 10-10 3-10M5 22h34M5 31h19c12 0 12 10 4 10"/></svg><span>桥梁抗风<small>交互课堂 / 第一课</small></span></a><p class="nav-label">风，从哪里开始理解</p><nav id="navigation" aria-label="课程章节"></nav><div class="side-bottom"><div class="axis-badge">⌖ 坐标已锁定</div><p>拖动参数，用同一把尺子<br>观察风的变化。</p><button id="reset" class="text-button">↺ 恢复初始参数</button><button id="guideToggle" class="text-button">公式与原代码说明 ↗</button></div></aside>
+<main><header class="topbar"><span>桥梁结构抗风理论与应用 <i>/</i> 风特性</span><div><button id="resetMobile" class="button mobile">↺ 重置</button><button id="freeze" class="button">保存对比</button><button id="export" class="button">导出图 SVG</button><button id="guideMobile" class="button mobile">说明</button></div></header><section class="heading"><div><p class="eyebrow" id="eyebrow"></p><h1 id="title"></h1><p id="subtitle"></p></div><div class="lesson-mark">WIND<span>LAB / 01</span></div></section><div id="controls" class="parameter-strip"></div><div id="compareNotice" class="compare-notice" hidden></div><section id="content"></section><footer><span>风特性 / 第一课</span><span>先观察，再解释。</span><button class="text-button" id="downloadData">下载风速数据 CSV ↓</button></footer></main>
+<dialog id="guide"><div class="dialog-head"><h2>公式、边界与原代码</h2><button id="guideClose" class="button">关闭 ✕</button></div><div class="guide-body"><h3>建议课堂演示</h3><p>① 观察均值和幅值。② 改变阵风平均窗口。③ 比较相同标准差、不同平均风速的湍流度。④ 调节积分尺度，联系时域和频域。⑤ 以 10 m 为锚点比较风速剖面。图上移动鼠标可读数；“保存对比”显示上一工况的虚线。</p><h3>坐标和合成样本</h3><p>各图的坐标范围固定。切换谱显示方式时，使用该方式预先设定的固定范围。超出范围会提示，不会自动缩放。只有“换一段风”才改变随机相位。</p><p>V(t) 是沿平均风方向的瞬时速度分量，u′(t) 是脉动。600 s 记录取 Δt = 0.25 s，单边 Kaimal 谱随机相位合成后，校准本段均值与标准差；它是有限带宽的教学模拟，非实测风。标准差使用分母 N。</p><h3>风谱约定</h3><p>单边谱，频率 f 以 Hz 计，∫₀∞ Sᵤ(f)df = σᵤ²。功率谱密度单位 (m/s)²/Hz。</p><p>Kaimal：Sᵤ(f) = 4σᵤ²(Lᵤ/Ū) / [1+6fLᵤ/Ū]⁵ᐟ³。</p><p>von Kármán：Sᵤ(f) = 4σᵤ²(Lᵤ/Ū) / [1+71(fLᵤ/Ū)²]⁵ᐟ⁶。常数采用 TurbSim 的圆整形式，积分有约 0.155% 的圆整误差。</p><p>风谱页绘制理论目标谱；有限带宽合成后校准 σ，记录的谱与连续目标谱不会逐点相同。fSᵤ/σᵤ² 相对于 ln f 的面积给出方差比例。</p><h3>本次转写与修订</h3><p>基于原课程的 <b>chap1_wind_characteristics.mlx</b> 和 <b>wind2.mlx</b>。原始文件完整保存在本地归档。</p><ul><li>保留均值/脉动分解、湍流度、滑动平均阵风、幂律剖面与风谱比较的教学主线。</li><li>白噪声示例改为具有时间相关性的谱合成风，以便解释积分尺度。</li><li>原来标注为 Davenport 的公式校正为 Kaimal。统一风谱名称、频率和单位；本课保留核验后的 Kaimal 与 von Kármán。</li><li>原阵风窗口为 5 s；网页默认 3 s，可调回 5 s。只计算完整窗口，避免边缘缩短窗口造成混淆。</li><li>加入对数律剖面对照。参考点统一到 10 m，幂律指数与粗糙度独立可调。</li></ul><p>本版加入三点风速相关性：同一高度、沿桥轴横风方向的三个点，采用随频率与间距衰减的相关谱合成。原稿中的风力等级、宽窄带、规范地表类别与梯度高度部分随代码归档。剖面是中性、匀质地表的概念比较，不套用规范地表类别；对数律设位移高度 d = 0，仅绘制 z ≥ 10 m。</p><h3>来源</h3><p><a href="https://www.wolai.com/kpY43KZmdizcoEEgKT1Lt9" target="_blank" rel="noreferrer">原课程资料</a> · <a href="https://openfast.readthedocs.io/en/main/_downloads/cb14d3e2d3533d76e405d730fea19846/TurbSim_v2.00.pdf" target="_blank" rel="noreferrer">OpenFAST / TurbSim User’s Guide</a> · <a href="https://space.oscar.wmo.int/variables/view/wind_gust" target="_blank" rel="noreferrer">WMO / 阵风定义</a></p><div id="originalCode"><details><summary>查看原 MATLAB 源码：chap1_wind_characteristics.m</summary><pre><code>% 定义风力等级和对应的风速范围（m/s）
+beaufort_scale = 0:18; % 蒲福风力等级，从0级到18级
+wind_speed_ranges = [0, 0.3, 1.6, 3.4, 5.5, 8, 10.8, 13.9, 17.2, 20.8, 24.5, ...
+                     28.5, 32.7, 37, 41.5, 46.2, 51, 56, 61]; % 风速范围的上限 (m/s)
+
+% 计算压力（假设压力正比于风速的平方）
+pressure = wind_speed_ranges.^2;
+
+% 绘制风力等级与风速的图
+figure;
+hold on;
+for i = 1:length(beaufort_scale)
+    if i &lt; length(beaufort_scale) % 确保不会超出数组范围
+        % 使用 rectangle 绘制每个风力等级的条形块
+        rectangle(&#x27;Position&#x27;, [beaufort_scale(i), wind_speed_ranges(i), 1, wind_speed_ranges(i+1) - wind_speed_ranges(i)], ...
+                  &#x27;FaceColor&#x27;, [0, 0, 1] * (i/length(beaufort_scale)), &#x27;EdgeColor&#x27;, &#x27;none&#x27;); % 根据等级变化颜色
+    end
+end
+xlabel(&#x27;风力等级 (Beaufort Scale)&#x27;);
+ylabel(&#x27;风速 (m/s)&#x27;);
+title(&#x27;风力等级与风速&#x27;);
+grid on;
+xlim([0 18]);
+ylim([0 65]);
+hold off;
+
+% 绘制风力等级与压力的图（压力与风速的平方成正比）
+figure;
+hold on;
+for i = 1:length(beaufort_scale)
+    if i &lt; length(beaufort_scale) % 确保不会超出数组范围
+        % 使用 rectangle 绘制每个风力等级的条形块
+        rectangle(&#x27;Position&#x27;, [beaufort_scale(i), pressure(i), 1, pressure(i+1) - pressure(i)], ...
+                  &#x27;FaceColor&#x27;, [1, 0, 0] * (i/length(beaufort_scale)), &#x27;EdgeColor&#x27;, &#x27;none&#x27;); % 根据等级变化颜色
+    end
+end
+xlabel(&#x27;风力等级 (Beaufort Scale)&#x27;);
+ylabel(&#x27;压力 (Pressure, 单位: U^2)&#x27;);
+title(&#x27;风力等级与压力&#x27;);
+grid on;
+xlim([0 18]);
+ylim([0 4000]);
+hold off;
+
+time = 0:0.1:600; % 时间序列（秒）
+wind_speed = 12 ...
+    + 1.1 * randn(size(time)); % 假设风速的随机数据，均值为10 m/s
+U_mean = mean(wind_speed); % 计算风速均值
+figure;
+plot(time, wind_speed);
+hold on;
+yline(U_mean, &#x27;r--&#x27;, &#x27;LineWidth&#x27;, 2, &#x27;DisplayName&#x27;, &#x27;风速均值&#x27;);
+title(&#x27;风速随时间的变化&#x27;);
+xlabel(&#x27;时间 (秒)&#x27;);
+ylabel(&#x27;风速 (m/s)&#x27;);
+grid on;
+ylim([0,20])
+U_mean = mean(wind_speed); % 计算风速均值
+disp([&#x27;风速均值: &#x27;, num2str(U_mean), &#x27; m/s&#x27;]);
+sigma_U = std(wind_speed); % 风速的标准差
+I = sigma_U / U_mean; % 湍流强度
+disp([&#x27;湍流强度: &#x27;, num2str(I)]);
+
+u_prime = wind_speed - U_mean; % 计算脉动风速
+
+figure;
+subplot(2,1,1);
+plot(time, wind_speed, &#x27;b&#x27;, &#x27;DisplayName&#x27;, &#x27;瞬时风速&#x27;);
+hold on;
+plot(time, U_mean * ones(size(time)), &#x27;r--&#x27;, &#x27;DisplayName&#x27;, &#x27;平均风速&#x27;);
+legend show;
+title(&#x27;风速分解&#x27;);
+xlabel(&#x27;时间 (秒)&#x27;);
+ylabel(&#x27;风速 (m/s)&#x27;);
+grid on;
+
+subplot(2,1,2);
+plot(time, u_prime, &#x27;g&#x27;, &#x27;DisplayName&#x27;, &#x27;脉动风速&#x27;);
+legend show;
+title(&#x27;脉动风速随时间的变化&#x27;);
+xlabel(&#x27;时间 (秒)&#x27;);
+ylabel(&#x27;脉动风速 (m/s)&#x27;);
+grid on;
+
+wind_direction = randi([0, 360], size(time)); % 随机风向数据
+figure;
+polarhistogram(deg2rad(wind_direction), 18);
+title(&#x27;风向分布&#x27;);
+
+window_size = 5; % 滑动窗口大小（秒），你可以将此值更改为其他数字（例如5秒）
+sampling_interval = time(2) - time(1); % 计算采样间隔
+wind_speed_smoothed = movmean(wind_speed, window_size / sampling_interval); % 滑动平均
+
+gust_speed = max(wind_speed_smoothed); % 阵风风速（最大滑动平均值）
+disp([&#x27;阵风风速: &#x27;, num2str(gust_speed), &#x27; m/s&#x27;]);
+
+figure;
+% 绘制瞬时风速为淡灰色曲线
+plot(time, wind_speed, &#x27;Color&#x27;, [0.8, 0.8, 0.8], &#x27;DisplayName&#x27;, &#x27;瞬时风速&#x27;);
+hold on;
+
+% 绘制滑动平均风速为红色曲线
+plot(time, wind_speed_smoothed, &#x27;r-&#x27;, &#x27;LineWidth&#x27;, 1, &#x27;DisplayName&#x27;, [num2str(window_size), &#x27;秒滑动平均风速&#x27;]);
+
+% 添加阵风风速的最大值标记
+yline(gust_speed, &#x27;k--&#x27;, &#x27;LineWidth&#x27;, 2, &#x27;DisplayName&#x27;, [&#x27;阵风风速 (&#x27;, num2str(window_size), &#x27;秒最大)&#x27;]);
+yline(U_mean, &#x27;b--&#x27;,&#x27;LineWidth&#x27;, 2, &#x27;DisplayName&#x27;, [&#x27;10 min平均风速&#x27;]);
+legend show; % 显示图例
+title(&#x27;瞬时风速与滑动平均风速&#x27;);
+xlabel(&#x27;时间 (秒)&#x27;);
+ylabel(&#x27;风速 (m/s)&#x27;);
+ylim([0,20])
+grid on;
+time_interval_10min = 10 * 60; % 10分钟时间间隔（秒）
+num_points_10min = time_interval_10min / (time(2) - time(1)); % 计算10分钟内的数据点数量
+U_mean_10min = mean(wind_speed(1:num_points_10min)); % 计算10分钟平均风速
+gust_factor = gust_speed / U_mean_10min; % 计算阵风系数
+% 使用disp函数显示结果，并正确拼接字符串
+disp([num2str(window_size), &#x27;秒的阵风风速 (&#x27;, num2str(window_size), &#x27; s Gust Speed): &#x27;, num2str(gust_speed), &#x27; m/s&#x27;]);
+disp([&#x27;10分钟平均风速 (10-min Mean Wind Speed): &#x27;, num2str(U_mean_10min), &#x27; m/s&#x27;]);
+disp([num2str(window_size), &#x27;秒的阵风系数 (Gust Factor): &#x27;, num2str(gust_factor)]);
+
+z = 0:1:100; % 高度范围（米）
+U_ref = 5; % 参考高度风速（假设为10 m/s）
+z_ref = 5; % 参考高度（假设为10米）
+alpha = 0.25; % 幂律指数（假设为0.14，一般在0.1到0.3之间，根据地表情况调整）
+
+% 使用幂律公式计算梯度风速
+U_z = U_ref * (z / z_ref).^alpha;
+
+figure;
+plot(U_z, z, &#x27;b-&#x27;, &#x27;DisplayName&#x27;, &#x27;梯度风速分布&#x27;);
+hold on;
+
+% 在图中添加参考点（U_ref, z_ref）并标注为实心圆
+plot(U_ref, z_ref, &#x27;ro&#x27;, &#x27;MarkerFaceColor&#x27;, &#x27;r&#x27;, &#x27;DisplayName&#x27;, &#x27;参考点 (U_{ref}, z_{ref})&#x27;);
+
+title(&#x27;梯度风速分布 (幂律表示)&#x27;);
+xlabel(&#x27;风速 (m/s)&#x27;);
+ylabel(&#x27;高度 (m)&#x27;);
+grid on;
+xlim([0, 20]); % 调整x轴范围以适应幂律公式的结果
+ylim([0,100])
+
+legend(&#x27;show&#x27;); % 显示图例
+
+% 清空环境
+clear; clc;
+
+% 设定参数
+U = 10; % 平均风速 (m/s)
+sigma_u2 = 2; % 湍流强度 (方差) (m^2/s^2)
+L_u = 100; % 湍流积分尺度 (m)
+z = 10; % 参考高度 (m)
+f = logspace(-5, 2, 100); % 频率范围 (0.01 Hz 到 2 Hz)
+
+% 计算各风谱模型
+% von Kármán 风谱
+S_vonKarman = (4 * sigma_u2 * (L_u/U)) ./ ((1 + 70.8 * (f * L_u / U).^2).^(5/6));
+
+% Davenport 风谱
+S_Davenport = (4 * sigma_u2 * (L_u/U)) ./ ((1 + 6 * (f * L_u / U)).^(5/3));
+
+% Harris 风谱
+S_Harris = sigma_u2 ./ ((1 + 33 * (f / U).^2).^(5/3));
+
+% Irwin 风谱
+S_Irwin = (2 * sigma_u2 * (L_u/U)) ./ (1 + (f * L_u / U).^2);
+
+% Simiu 风谱
+S_Simiu = (4 * sigma_u2 * (L_u/U)) ./ ((1 + 10.2 * (f * L_u / U)).^(5/3));
+
+% Kaimal 风谱
+n = f; % 对于 Kaimal 风谱，频率 n = f
+S_Kaimal = (200 * sigma_u2 * (n * z / U)) ./ ((1 + 50 * (n * z / U)).^(5/3));
+
+% 绘制所有风谱模型
+figure;
+loglog(f, S_vonKarman, &#x27;r&#x27;, &#x27;DisplayName&#x27;, &#x27;von Kármán&#x27;);
+hold on;
+loglog(f, S_Davenport, &#x27;g&#x27;, &#x27;DisplayName&#x27;, &#x27;Davenport&#x27;);
+loglog(f, S_Harris, &#x27;b&#x27;, &#x27;DisplayName&#x27;, &#x27;Harris&#x27;);
+loglog(f, S_Irwin, &#x27;c&#x27;, &#x27;DisplayName&#x27;, &#x27;Irwin&#x27;);
+loglog(f, S_Simiu, &#x27;m&#x27;, &#x27;DisplayName&#x27;, &#x27;Simiu&#x27;);
+loglog(f, S_Kaimal, &#x27;k&#x27;, &#x27;DisplayName&#x27;, &#x27;Kaimal&#x27;);
+hold off;
+
+% 设置图例和标题
+legend show;
+title(&#x27;不同风谱模型的风速功率谱密度比较&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度 (m^2/s^2/Hz)&#x27;);
+grid on;
+
+% 清空环境
+clear; clc;
+
+% 设定参数
+U = 5; % 平均风速 (m/s)
+sigma_u2 = 2.9; % 湍流强度 (方差) (m^2/s^2)
+L_u = 50; % 湍流积分尺度 (m)
+f = logspace(-5, 2, 100); % 频率范围 (0.01 Hz 到 2 Hz)
+
+% 计算各风谱模型
+% von Kármán 风谱
+S_vonKarman = (4 * sigma_u2 * (L_u/U)) ./ ((1 + 70.8 * (f * L_u / U).^2).^(5/6));
+figure;
+loglog(f, S_vonKarman, &#x27;r&#x27;, &#x27;DisplayName&#x27;, &#x27;von Kármán&#x27;);
+ylim([0,200])
+xlim([0,2])
+grid on
+
+%% 脉动风速的频率相关性示例
+% 该示例展示了两组风速数据的生成，每组数据包含低频和高频成分。
+% 低频成分（例如0.1Hz）在空间上具有高相关性，而高频成分（例如5Hz）在空间上相关性较弱（具有一定的相位差）。
+
+% 清空环境
+clear; clc; close all;
+
+%% 参数设置
+Fs = 100; % 采样频率 (Hz)
+T = 60; % 总时间 (秒)
+N = Fs * T; % 样本点数
+U = 10; % 平均风速 (m/s)
+sigma_low = 1; % 低频成分湍流强度 (标准差) (m/s)
+sigma_high = 0.5; % 高频成分湍流强度 (标准差) (m/s)
+
+% 设置频率
+f_low = 0.1; % 低频成分 (Hz)
+f_high = 5; % 高频成分 (Hz)
+
+% 时间向量
+t = (0:N-1) / Fs;
+
+%% 生成两组具有高相关性的低频风速数据
+% 低频风速在空间上具有较高的相关性
+low_freq_component_1 = sigma_low * sin(2 * pi * f_low * t); % 位置1的低频成分
+low_freq_component_2 = sigma_low * sin(2 * pi * f_low * t); % 位置2的低频成分 (完全相关)
+
+%% 生成两组具有相位差的高频风速数据
+% 高频风速在空间上具有较低的相关性，通过相位差体现
+phase_difference = pi/2; % 相位差（45度）
+high_freq_component_1 = sigma_high * sin(2 * pi * f_high * t); % 位置1的高频成分
+high_freq_component_2 = sigma_high * sin(2 * pi * f_high * t + phase_difference); % 位置2的高频成分（有相位差）
+
+%% 合成两组脉动风速数据
+u_1 = U + low_freq_component_1 + high_freq_component_1; % 位置1的总风速
+u_2 = U + low_freq_component_2 + high_freq_component_2; % 位置2的总风速
+
+%% 绘制风速时程
+figure;
+
+% 绘制位置1和位置2的总风速时程
+subplot(2,2,1)
+plot(t, u_1, &#x27;r&#x27;);
+title(&#x27;位置1的风速时程&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;风速 (m/s)&#x27;);
+xlim([0,10])
+hold on
+
+subplot(2,2,2)
+plot(t, u_2, &#x27;b&#x27;);
+title(&#x27;位置2的风速时程&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;风速 (m/s)&#x27;);
+xlim([0,10])
+hold on
+
+% 绘制低频成分对比
+subplot(2,2,3)
+plot(t, low_freq_component_1, &#x27;r&#x27;, t, low_freq_component_2, &#x27;b&#x27;);
+title(&#x27;低频成分对比&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;低频风速 (m/s)&#x27;);
+xlim([0,10])
+legend(&#x27;位置1低频成分&#x27;, &#x27;位置2低频成分&#x27;);
+
+% 绘制高频成分对比
+subplot(2,2,4)
+plot(t, high_freq_component_1, &#x27;r&#x27;, t, high_freq_component_2, &#x27;b&#x27;);
+title(&#x27;高频成分对比&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;高频风速 (m/s)&#x27;);
+xlim([0,2])
+legend(&#x27;位置1高频成分&#x27;, &#x27;位置2高频成分&#x27;);
+
+% 调整图形布局
+sgtitle(&#x27;脉动风速的频率相关性分析&#x27;);
+%% 计算并绘制风速的功率谱
+[pxx1, f1] = pwelch(u_1 - mean(u_1), [], [], [], Fs);
+[pxx2, f2] = pwelch(u_2 - mean(u_2), [], [], [], Fs);
+
+figure;
+semilogy(f1, pxx1, &#x27;r&#x27;, &#x27;DisplayName&#x27;, &#x27;位置1&#x27;);
+hold on;
+semilogy(f2, pxx2, &#x27;b&#x27;, &#x27;DisplayName&#x27;, &#x27;位置2&#x27;);
+title(&#x27;两位置风速的功率谱比较&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度 (m^2/s^2/Hz)&#x27;);
+xlim([0,10])
+legend;
+grid on;
+hold off;
+
+
+
+% 清空环境
+clear; clc; close all;
+
+%% 参数设置
+Fs = 50; % 采样频率 (Hz)
+T = 60; % 总时间 (秒)
+N = Fs * T; % 样本点数
+
+% 时间向量
+t = (0:N-1) / Fs;
+
+% 设定噪声的标准差
+sigma = 1; 
+
+%% 完全相关的两个时间序列 (相关系数 = 1)
+data1_complete = sigma * randn(1, N);  % 随机生成的时间序列1
+data2_complete = data1_complete;       % 完全相关的时间序列2
+
+%% 反向相关的两个时间序列 (相关系数 = -1)
+data1_inverse = sigma * randn(1, N);   % 随机生成的时间序列1
+data2_inverse = -data1_inverse;        % 反向相关的时间序列2
+
+%% 低相关性的两个时间序列 (相关系数 = 0.3)
+data1_low = sigma * randn(1, N);       % 随机生成的时间序列1
+rho = 0.3;                             % 目标相关系数
+data2_low = rho * data1_low + sqrt(1 - rho^2) * randn(1, N); % 低相关性时间序列2
+
+%% 绘制时间序列图
+figure;
+
+% 完全相关情况
+subplot(3,2,1);
+plot(t, data1_complete, &#x27;r&#x27;, t, data2_complete, &#x27;b&#x27;);
+title(&#x27;完全相关 (相关系数 = 1)&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;数据值&#x27;);
+legend(&#x27;数据1&#x27;, &#x27;数据2&#x27;);
+xlim([0, 10]);
+
+% 反向相关情况
+subplot(3,2,3);
+plot(t, data1_inverse, &#x27;r&#x27;, t, data2_inverse, &#x27;b&#x27;);
+title(&#x27;反向相关 (相关系数 = -1)&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;数据值&#x27;);
+legend(&#x27;数据1&#x27;, &#x27;数据2&#x27;);
+xlim([0, 10]);
+
+% 低相关性情况
+subplot(3,2,5);
+plot(t, data1_low, &#x27;r&#x27;, t, data2_low, &#x27;b&#x27;);
+title(&#x27;低相关性 (相关系数 = 0.3)&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;数据值&#x27;);
+legend(&#x27;数据1&#x27;, &#x27;数据2&#x27;);
+xlim([0, 10]);
+
+%% 绘制相关系数散点图
+% 完全相关的散点图
+subplot(3,2,2);
+scatter(data1_complete, data2_complete, &#x27;filled&#x27;);
+title(&#x27;完全相关散点图&#x27;);
+xlabel(&#x27;数据1&#x27;);
+ylabel(&#x27;数据2&#x27;);
+axis equal;
+
+% 反向相关的散点图
+subplot(3,2,4);
+scatter(data1_inverse, data2_inverse, &#x27;filled&#x27;);
+title(&#x27;反向相关散点图&#x27;);
+xlabel(&#x27;数据1&#x27;);
+ylabel(&#x27;数据2&#x27;);
+axis equal;
+
+% 低相关性的散点图
+subplot(3,2,6);
+scatter(data1_low, data2_low, &#x27;filled&#x27;);
+title(&#x27;低相关性散点图&#x27;);
+xlabel(&#x27;数据1&#x27;);
+ylabel(&#x27;数据2&#x27;);
+axis equal;
+
+% 调整图形布局
+sgtitle(&#x27;不同相关性情况下的时间序列和散点图&#x27;);
+%% 不同相关性情况下的正弦信号生成与分析
+% 该脚本生成两组正弦信号，分别表现为完全相关、反向相关和低相关性。
+
+% 清空环境
+clear; clc; close all;
+
+%% 参数设置
+Fs = 50; % 采样频率 (Hz)
+T = 60; % 总时间 (秒)
+N = Fs * T; % 样本点数
+
+% 时间向量
+t = (0:N-1) / Fs;
+
+% 正弦信号参数
+f = 1; % 频率 (Hz)
+A = 1; % 振幅
+
+%% 完全相关的两个正弦信号 (相关系数 = 1)
+data1_complete = A * sin(2 * pi * f * t);  % 信号1
+data2_complete = A * sin(2 * pi * f * t);  % 信号2 (完全相同)
+
+%% 反向相关的两个正弦信号 (相关系数 = -1)
+data1_inverse = A * sin(2 * pi * f * t);           % 信号1
+data2_inverse = A * sin(2 * pi * f * t + pi);      % 信号2 (反向)
+
+%% 低相关性的两个正弦信号 (相关系数接近0)
+phase_diff = pi/2;  % 相位差 45度
+data1_low = A * sin(2 * pi * f * t);               % 信号1
+data2_low = A * sin(2 * pi * f * t + phase_diff);  % 信号2 (有相位差)
+
+%% 绘制时间序列图
+figure;
+
+% 完全相关情况
+subplot(3,2,1);
+plot(t, data1_complete, &#x27;r&#x27;, t, data2_complete, &#x27;b&#x27;);
+title(&#x27;完全相关 (相关系数 = 1)&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;信号幅值&#x27;);
+legend(&#x27;信号1&#x27;, &#x27;信号2&#x27;);
+xlim([0, 10]);
+
+% 反向相关情况
+subplot(3,2,3);
+plot(t, data1_inverse, &#x27;r&#x27;, t, data2_inverse, &#x27;b&#x27;);
+title(&#x27;反向相关 (相关系数 = -1)&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;信号幅值&#x27;);
+legend(&#x27;信号1&#x27;, &#x27;信号2&#x27;);
+xlim([0, 10]);
+
+% 低相关性情况
+subplot(3,2,5);
+plot(t, data1_low, &#x27;r&#x27;, t, data2_low, &#x27;b&#x27;);
+title(&#x27;低相关性 (相关系数接近0)&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;信号幅值&#x27;);
+legend(&#x27;信号1&#x27;, &#x27;信号2&#x27;);
+xlim([0, 10]);
+
+%% 绘制相关系数散点图
+% 完全相关的散点图
+subplot(3,2,2);
+scatter(data1_complete, data2_complete, &#x27;filled&#x27;);
+title(&#x27;完全相关散点图&#x27;);
+xlabel(&#x27;信号1&#x27;);
+ylabel(&#x27;信号2&#x27;);
+axis equal;
+
+% 反向相关的散点图
+subplot(3,2,4);
+scatter(data1_inverse, data2_inverse, &#x27;filled&#x27;);
+title(&#x27;反向相关散点图&#x27;);
+xlabel(&#x27;信号1&#x27;);
+ylabel(&#x27;信号2&#x27;);
+axis equal;
+
+% 低相关性的散点图
+subplot(3,2,6);
+scatter(data1_low, data2_low, &#x27;filled&#x27;);
+title(&#x27;低相关性散点图&#x27;);
+xlabel(&#x27;信号1&#x27;);
+ylabel(&#x27;信号2&#x27;);
+axis equal;
+
+% 调整图形布局
+sgtitle(&#x27;不同相关性情况下的正弦信号和散点图&#x27;);
+
+
+%% 风速时程的频谱分析：宽带、窄带、低频和高频
+clear; clc; close all;
+
+%% 参数设置
+Fs = 100; % 采样频率 (Hz)
+T = 60; % 总时间 (秒)
+N = Fs * T; % 样本点数
+t = (0:N-1) / Fs; % 时间向量
+
+%% 生成宽带信号
+% 使用白噪声模拟宽带谱信号
+broadband_signal = randn(size(t)); % 宽带白噪声信号
+
+%% 生成窄带信号
+% 使用一个或少数几个频率成分模拟窄带谱信号
+mid_freq = 1; % 中频成分 (Hz)
+narrowband_signal = sin(2 * pi * mid_freq * t) + 0.1 * sin(2 * pi * (mid_freq + 0.1) * t);
+
+%% 生成低频信号
+% 使用低频率成分模拟低频信号
+low_freq = 0.1; % 低频成分 (Hz)
+low_frequency_signal = sin(2 * pi * low_freq * t);
+
+%% 生成高频信号
+% 使用高频率成分模拟高频信号
+high_freq = 2; % 高频成分 (Hz)
+high_frequency_signal = sin(2 * pi * high_freq * t);
+
+%% 绘制宽带和窄带信号
+figure;
+% 宽带信号
+subplot(2,3,1);
+plot(t, broadband_signal, &#x27;b&#x27;);
+title(&#x27;宽带信号时程（白噪声）&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;风速波动&#x27;);
+
+subplot(2,3,2);
+[pxx_broadband, f_broadband] = pwelch(broadband_signal, [], [], [], Fs);
+loglog(f_broadband, pxx_broadband, &#x27;b&#x27;);
+title(&#x27;宽带信号功率谱（对数坐标）&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度&#x27;);
+
+% 宽带信号线性坐标
+subplot(2,3,3);
+plot(f_broadband, pxx_broadband, &#x27;b&#x27;);
+title(&#x27;宽带信号功率谱（线性坐标）&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度&#x27;);
+xlim([0, 10]); % 控制横坐标范围
+
+% 窄带信号
+subplot(2,3,4);
+plot(t, narrowband_signal, &#x27;r&#x27;);
+title(&#x27;窄带信号时程&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;风速波动&#x27;);
+
+subplot(2,3,5);
+[pxx_narrowband, f_narrowband] = pwelch(narrowband_signal, [], [], [], Fs);
+loglog(f_narrowband, pxx_narrowband, &#x27;r&#x27;);
+title(&#x27;窄带信号功率谱（对数坐标）&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度&#x27;);
+
+% 窄带信号线性坐标
+subplot(2,3,6);
+plot(f_narrowband, pxx_narrowband, &#x27;r&#x27;);
+title(&#x27;窄带信号功率谱（线性坐标）&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度&#x27;);
+xlim([0, 2]); % 控制横坐标范围
+
+
+figure;
+
+% 第一列
+subplot(2,3,1);
+plot(t, low_frequency_signal, &#x27;k&#x27;);
+title(&#x27;低频信号时程&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;风速波动&#x27;);
+xlim([0,20]);
+
+subplot(2,3,2);
+[pxx_low, f_low] = pwelch(low_frequency_signal, [], [], [], Fs);
+loglog(f_low, pxx_low, &#x27;k&#x27;);
+title(&#x27;低频信号功率谱 (对数坐标)&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度&#x27;);
+
+subplot(2,3,3);
+plot(f_low, pxx_low, &#x27;k&#x27;);
+title(&#x27;低频信号功率谱 (线性坐标)&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度&#x27;);
+xlim([0, 3]); % 控制横坐标范围
+
+% 第二列
+subplot(2,3,4);
+plot(t, high_frequency_signal, &#x27;r&#x27;);
+title(&#x27;高频信号时程&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;风速波动&#x27;);
+xlim([0,20]);
+
+subplot(2,3,5);
+[pxx_high, f_high] = pwelch(high_frequency_signal, [], [], [], Fs);
+loglog(f_high, pxx_high, &#x27;r&#x27;);
+title(&#x27;高频信号功率谱 (对数坐标)&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度&#x27;);
+
+subplot(2,3,6);
+plot(f_high, pxx_high, &#x27;r&#x27;);
+title(&#x27;高频信号功率谱 (线性坐标)&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度&#x27;);
+xlim([0, 3]); % 控制横坐标范围
+
+% MATLAB 脚本：风速剖面绘制
+
+% 定义基本风速 (单位：m/s)
+V_base = 12;  % 示例值，可以根据实际情况修改
+
+% 地表类别定义及相关参数
+surface_types = {&#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;, &#x27;D&#x27;};  % 地表类别
+conversion_factors = [1.174, 1.0, 0.785, 0.564];  % 转换系数
+exponents = [0.12, 0.16, 0.22, 0.3];  % 指数率
+gradient_heights = [300, 350, 400, 450];  % 梯度风高度
+
+% 用户选择的地表类别和高度
+selected_surface_type = &#x27;D&#x27;;  % 可以更改为 &#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;, &#x27;D&#x27;
+selected_height = 62;  % 可以更改为需要的高度
+
+% 查找对应的转换系数、指数和梯度风高度
+idx = find(strcmp(surface_types, selected_surface_type));
+conversion_factor = conversion_factors(idx);
+exponent = exponents(idx);
+gradient_height = gradient_heights(idx);
+
+% 计算10米高度处的风速
+V_10m = V_base * conversion_factor;
+
+% 定义高度范围
+heights = linspace(1, 500, 1000);
+
+% 预设风速剖面矩阵
+V_profiles = zeros(length(heights), length(surface_types));
+
+% 计算不同地表类别的风速剖面
+for j = 1:length(surface_types)
+    for i = 1:length(heights)
+        if heights(i) &lt;= gradient_heights(j)
+            V_profiles(i, j) = V_base * conversion_factors(j) * (heights(i) / 10) ^ exponents(j);
+        else
+            V_profiles(i, j) = V_base * conversion_factors(j) * (gradient_heights(j) / 10) ^ exponents(j);  % 超过梯度风高度，保持不变
+        end
+    end
+end
+
+% 绘制风速剖面
+figure;
+hold on
+colors = {&#x27;r&#x27;, &#x27;g&#x27;, &#x27;b&#x27;, &#x27;k&#x27;};  % 为每种地表类别分配颜色
+line_widths = [1, 1, 1, 1];  % 默认线宽
+
+% 高亮用户选择的地表类别
+line_widths(idx) = 3;  % 高亮选择的地表类别
+for j = 1:length(surface_types)
+    plot(V_profiles(:, j), heights, &#x27;Color&#x27;, colors{j}, &#x27;LineWidth&#x27;, line_widths(j));
+end
+
+% 绘制10米高度处的风速横线
+plot([0, V_10m], [10, 10], &#x27;k--&#x27;, &#x27;LineWidth&#x27;, 1); 
+text(V_10m, 10, sprintf(&#x27;10m: %.2f m/s&#x27;, V_10m), &#x27;VerticalAlignment&#x27;, &#x27;bottom&#x27;, &#x27;HorizontalAlignment&#x27;, &#x27;left&#x27;);
+
+% 在选择的高度处绘制横线
+V_selected_height = V_10m * (selected_height / 10) ^ exponent;
+plot([0, V_selected_height], [selected_height, selected_height], &#x27;k--&#x27;, &#x27;LineWidth&#x27;, 1);
+text(V_selected_height, selected_height, sprintf(&#x27;%.1fm: %.2f m/s&#x27;, selected_height, V_selected_height), &#x27;VerticalAlignment&#x27;, &#x27;bottom&#x27;, &#x27;HorizontalAlignment&#x27;, &#x27;left&#x27;);
+
+% 图形设置
+xlabel(&#x27;风速 (m/s)&#x27;);
+ylabel(&#x27;高度 (m)&#x27;);
+title(&#x27;不同地表类别的风速剖面&#x27;);
+legend(surface_types, &#x27;Location&#x27;, &#x27;northwest&#x27;);
+grid on;
+hold off;
+% 输出10米高度处的风速
+fprintf(&#x27;基本风速，10米高度处风速为 %.2f m/s\n&#x27;, V_base);
+fprintf(&#x27;地表类型 %s，桥梁设计基本风速 10米高度处风速为 %.2f m/s\n&#x27;, selected_surface_type, V_10m);
+fprintf(&#x27;设计基准风速 高度 %.1f m: 风速 = %.2f m/s\n&#x27;, selected_height, V_selected_height);
+</code></pre></details><details><summary>查看原 MATLAB 源码：wind2.m</summary><pre><code>% 清空环境
+clear; clc;
+
+% 设定参数
+U = 10; % 平均风速 (m/s)
+sigma_u2 = 2; % 湍流强度 (方差) (m^2/s^2)
+L_u = 100; % 湍流积分尺度 (m)
+z = 10; % 参考高度 (m)
+f = logspace(-5, 2, 100); % 频率范围 (0.01 Hz 到 2 Hz)
+
+% 计算各风谱模型
+% von Kármán 风谱
+S_vonKarman = (4 * sigma_u2 * (L_u/U)) ./ ((1 + 70.8 * (f * L_u / U).^2).^(5/6));
+
+% Davenport 风谱
+S_Davenport = (4 * sigma_u2 * (L_u/U)) ./ ((1 + 6 * (f * L_u / U)).^(5/3));
+
+% Harris 风谱
+S_Harris = sigma_u2 ./ ((1 + 33 * (f / U).^2).^(5/3));
+
+% Irwin 风谱
+S_Irwin = (2 * sigma_u2 * (L_u/U)) ./ (1 + (f * L_u / U).^2);
+
+% Simiu 风谱
+S_Simiu = (4 * sigma_u2 * (L_u/U)) ./ ((1 + 10.2 * (f * L_u / U)).^(5/3));
+
+% Kaimal 风谱
+n = f; % 对于 Kaimal 风谱，频率 n = f
+S_Kaimal = (200 * sigma_u2 * (n * z / U)) ./ ((1 + 50 * (n * z / U)).^(5/3));
+
+% 绘制所有风谱模型
+figure;
+loglog(f, S_vonKarman, &#x27;r&#x27;, &#x27;DisplayName&#x27;, &#x27;von Kármán&#x27;);
+hold on;
+loglog(f, S_Davenport, &#x27;g&#x27;, &#x27;DisplayName&#x27;, &#x27;Davenport&#x27;);
+loglog(f, S_Harris, &#x27;b&#x27;, &#x27;DisplayName&#x27;, &#x27;Harris&#x27;);
+loglog(f, S_Irwin, &#x27;c&#x27;, &#x27;DisplayName&#x27;, &#x27;Irwin&#x27;);
+loglog(f, S_Simiu, &#x27;m&#x27;, &#x27;DisplayName&#x27;, &#x27;Simiu&#x27;);
+loglog(f, S_Kaimal, &#x27;k&#x27;, &#x27;DisplayName&#x27;, &#x27;Kaimal&#x27;);
+hold off;
+
+% 设置图例和标题
+legend show;
+title(&#x27;不同风谱模型的风速功率谱密度比较&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度 (m^2/s^2/Hz)&#x27;);
+grid on;
+
+% 清空环境
+clear; clc;
+
+% 设定参数
+U = 10; % 平均风速 (m/s)
+sigma_u2 = 2; % 湍流强度 (方差) (m^2/s^2)
+L_u = 100; % 湍流积分尺度 (m)
+f = logspace(-5, 2, 100); % 频率范围 (0.01 Hz 到 2 Hz)
+
+% 计算各风谱模型
+% von Kármán 风谱
+S_vonKarman = (4 * sigma_u2 * (L_u/U)) ./ ((1 + 70.8 * (f * L_u / U).^2).^(5/6));
+figure;
+loglog(f, S_vonKarman, &#x27;r&#x27;, &#x27;DisplayName&#x27;, &#x27;von Kármán&#x27;);
+ylim([0,200])
+xlim([0,2])
+grid on
+
+%% 脉动风速的频率相关性示例
+% 该示例展示了两组风速数据的生成，每组数据包含低频和高频成分。
+% 低频成分（例如0.1Hz）在空间上具有高相关性，而高频成分（例如5Hz）在空间上相关性较弱（具有一定的相位差）。
+
+% 清空环境
+clear; clc; close all;
+
+%% 参数设置
+Fs = 100; % 采样频率 (Hz)
+T = 60; % 总时间 (秒)
+N = Fs * T; % 样本点数
+U = 10; % 平均风速 (m/s)
+sigma_low = 1; % 低频成分湍流强度 (标准差) (m/s)
+sigma_high = 0.5; % 高频成分湍流强度 (标准差) (m/s)
+
+% 设置频率
+f_low = 0.1; % 低频成分 (Hz)
+f_high = 5; % 高频成分 (Hz)
+
+% 时间向量
+t = (0:N-1) / Fs;
+
+%% 生成两组具有高相关性的低频风速数据
+% 低频风速在空间上具有较高的相关性
+low_freq_component_1 = sigma_low * sin(2 * pi * f_low * t); % 位置1的低频成分
+low_freq_component_2 = sigma_low * sin(2 * pi * f_low * t); % 位置2的低频成分 (完全相关)
+
+%% 生成两组具有相位差的高频风速数据
+% 高频风速在空间上具有较低的相关性，通过相位差体现
+phase_difference = pi/2; % 相位差（45度）
+high_freq_component_1 = sigma_high * sin(2 * pi * f_high * t); % 位置1的高频成分
+high_freq_component_2 = sigma_high * sin(2 * pi * f_high * t + phase_difference); % 位置2的高频成分（有相位差）
+
+%% 合成两组脉动风速数据
+u_1 = U + low_freq_component_1 + high_freq_component_1; % 位置1的总风速
+u_2 = U + low_freq_component_2 + high_freq_component_2; % 位置2的总风速
+
+%% 绘制风速时程
+figure;
+
+% 绘制位置1和位置2的总风速时程
+subplot(2,2,1)
+plot(t, u_1, &#x27;r&#x27;);
+title(&#x27;位置1的风速时程&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;风速 (m/s)&#x27;);
+xlim([0,10])
+hold on
+
+subplot(2,2,2)
+plot(t, u_2, &#x27;b&#x27;);
+title(&#x27;位置2的风速时程&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;风速 (m/s)&#x27;);
+xlim([0,10])
+hold on
+
+% 绘制低频成分对比
+subplot(2,2,3)
+plot(t, low_freq_component_1, &#x27;r&#x27;, t, low_freq_component_2, &#x27;b&#x27;);
+title(&#x27;低频成分对比&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;低频风速 (m/s)&#x27;);
+xlim([0,10])
+legend(&#x27;位置1低频成分&#x27;, &#x27;位置2低频成分&#x27;);
+
+% 绘制高频成分对比
+subplot(2,2,4)
+plot(t, high_freq_component_1, &#x27;r&#x27;, t, high_freq_component_2, &#x27;b&#x27;);
+title(&#x27;高频成分对比&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;高频风速 (m/s)&#x27;);
+xlim([0,2])
+legend(&#x27;位置1高频成分&#x27;, &#x27;位置2高频成分&#x27;);
+
+% 调整图形布局
+sgtitle(&#x27;脉动风速的频率相关性分析&#x27;);
+
+
+%% 计算并绘制风速的功率谱
+[pxx1, f1] = pwelch(u_1 - mean(u_1), [], [], [], Fs);
+[pxx2, f2] = pwelch(u_2 - mean(u_2), [], [], [], Fs);
+
+figure;
+semilogy(f1, pxx1, &#x27;r&#x27;, &#x27;DisplayName&#x27;, &#x27;位置1&#x27;);
+hold on;
+semilogy(f2, pxx2, &#x27;b&#x27;, &#x27;DisplayName&#x27;, &#x27;位置2&#x27;);
+title(&#x27;两位置风速的功率谱比较&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度 (m^2/s^2/Hz)&#x27;);
+xlim([0,10])
+legend;
+grid on;
+hold off;
+
+%% 计算并绘制自相关函数
+[R_1, lags_1] = xcorr(u_1 - mean(u_1), &#x27;coeff&#x27;);
+[R_2, lags_2] = xcorr(u_2 - mean(u_2), &#x27;coeff&#x27;);
+
+figure;
+plot(lags_1/Fs, R_1, &#x27;r&#x27;, &#x27;DisplayName&#x27;, &#x27;位置1&#x27;);
+hold on;
+plot(lags_2/Fs, R_2, &#x27;b&#x27;, &#x27;DisplayName&#x27;, &#x27;位置2&#x27;);
+title(&#x27;两位置风速的自相关函数比较&#x27;);
+xlabel(&#x27;时间延迟 (s)&#x27;);
+ylabel(&#x27;自相关系数&#x27;);
+legend;
+grid on;
+hold off;
+
+
+% 清空环境
+clear; clc; close all;
+
+%% 参数设置
+Fs = 50; % 采样频率 (Hz)
+T = 60; % 总时间 (秒)
+N = Fs * T; % 样本点数
+
+% 时间向量
+t = (0:N-1) / Fs;
+
+% 设定噪声的标准差
+sigma = 1; 
+
+%% 完全相关的两个时间序列 (相关系数 = 1)
+data1_complete = sigma * randn(1, N);  % 随机生成的时间序列1
+data2_complete = data1_complete;       % 完全相关的时间序列2
+
+%% 反向相关的两个时间序列 (相关系数 = -1)
+data1_inverse = sigma * randn(1, N);   % 随机生成的时间序列1
+data2_inverse = -data1_inverse;        % 反向相关的时间序列2
+
+%% 低相关性的两个时间序列 (相关系数 = 0.3)
+data1_low = sigma * randn(1, N);       % 随机生成的时间序列1
+rho = 0.3;                             % 目标相关系数
+data2_low = rho * data1_low + sqrt(1 - rho^2) * randn(1, N); % 低相关性时间序列2
+
+%% 绘制时间序列图
+figure;
+
+% 完全相关情况
+subplot(3,2,1);
+plot(t, data1_complete, &#x27;r&#x27;, t, data2_complete, &#x27;b&#x27;);
+title(&#x27;完全相关 (相关系数 = 1)&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;数据值&#x27;);
+legend(&#x27;数据1&#x27;, &#x27;数据2&#x27;);
+xlim([0, 10]);
+
+% 反向相关情况
+subplot(3,2,3);
+plot(t, data1_inverse, &#x27;r&#x27;, t, data2_inverse, &#x27;b&#x27;);
+title(&#x27;反向相关 (相关系数 = -1)&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;数据值&#x27;);
+legend(&#x27;数据1&#x27;, &#x27;数据2&#x27;);
+xlim([0, 10]);
+
+% 低相关性情况
+subplot(3,2,5);
+plot(t, data1_low, &#x27;r&#x27;, t, data2_low, &#x27;b&#x27;);
+title(&#x27;低相关性 (相关系数 = 0.3)&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;数据值&#x27;);
+legend(&#x27;数据1&#x27;, &#x27;数据2&#x27;);
+xlim([0, 10]);
+
+%% 绘制相关系数散点图
+% 完全相关的散点图
+subplot(3,2,2);
+scatter(data1_complete, data2_complete, &#x27;filled&#x27;);
+title(&#x27;完全相关散点图&#x27;);
+xlabel(&#x27;数据1&#x27;);
+ylabel(&#x27;数据2&#x27;);
+axis equal;
+
+% 反向相关的散点图
+subplot(3,2,4);
+scatter(data1_inverse, data2_inverse, &#x27;filled&#x27;);
+title(&#x27;反向相关散点图&#x27;);
+xlabel(&#x27;数据1&#x27;);
+ylabel(&#x27;数据2&#x27;);
+axis equal;
+
+% 低相关性的散点图
+subplot(3,2,6);
+scatter(data1_low, data2_low, &#x27;filled&#x27;);
+title(&#x27;低相关性散点图&#x27;);
+xlabel(&#x27;数据1&#x27;);
+ylabel(&#x27;数据2&#x27;);
+axis equal;
+
+% 调整图形布局
+sgtitle(&#x27;不同相关性情况下的时间序列和散点图&#x27;);
+%% 不同相关性情况下的正弦信号生成与分析
+% 该脚本生成两组正弦信号，分别表现为完全相关、反向相关和低相关性。
+
+% 清空环境
+clear; clc; close all;
+
+%% 参数设置
+Fs = 50; % 采样频率 (Hz)
+T = 60; % 总时间 (秒)
+N = Fs * T; % 样本点数
+
+% 时间向量
+t = (0:N-1) / Fs;
+
+% 正弦信号参数
+f = 1; % 频率 (Hz)
+A = 1; % 振幅
+
+%% 完全相关的两个正弦信号 (相关系数 = 1)
+data1_complete = A * sin(2 * pi * f * t);  % 信号1
+data2_complete = A * sin(2 * pi * f * t);  % 信号2 (完全相同)
+
+%% 反向相关的两个正弦信号 (相关系数 = -1)
+data1_inverse = A * sin(2 * pi * f * t);           % 信号1
+data2_inverse = A * sin(2 * pi * f * t + pi);      % 信号2 (反向)
+
+%% 低相关性的两个正弦信号 (相关系数接近0)
+phase_diff = pi/2;  % 相位差 45度
+data1_low = A * sin(2 * pi * f * t);               % 信号1
+data2_low = A * sin(2 * pi * f * t + phase_diff);  % 信号2 (有相位差)
+
+%% 绘制时间序列图
+figure;
+
+% 完全相关情况
+subplot(3,2,1);
+plot(t, data1_complete, &#x27;r&#x27;, t, data2_complete, &#x27;b&#x27;);
+title(&#x27;完全相关 (相关系数 = 1)&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;信号幅值&#x27;);
+legend(&#x27;信号1&#x27;, &#x27;信号2&#x27;);
+xlim([0, 10]);
+
+% 反向相关情况
+subplot(3,2,3);
+plot(t, data1_inverse, &#x27;r&#x27;, t, data2_inverse, &#x27;b&#x27;);
+title(&#x27;反向相关 (相关系数 = -1)&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;信号幅值&#x27;);
+legend(&#x27;信号1&#x27;, &#x27;信号2&#x27;);
+xlim([0, 10]);
+
+% 低相关性情况
+subplot(3,2,5);
+plot(t, data1_low, &#x27;r&#x27;, t, data2_low, &#x27;b&#x27;);
+title(&#x27;低相关性 (相关系数接近0)&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;信号幅值&#x27;);
+legend(&#x27;信号1&#x27;, &#x27;信号2&#x27;);
+xlim([0, 10]);
+
+%% 绘制相关系数散点图
+% 完全相关的散点图
+subplot(3,2,2);
+scatter(data1_complete, data2_complete, &#x27;filled&#x27;);
+title(&#x27;完全相关散点图&#x27;);
+xlabel(&#x27;信号1&#x27;);
+ylabel(&#x27;信号2&#x27;);
+axis equal;
+
+% 反向相关的散点图
+subplot(3,2,4);
+scatter(data1_inverse, data2_inverse, &#x27;filled&#x27;);
+title(&#x27;反向相关散点图&#x27;);
+xlabel(&#x27;信号1&#x27;);
+ylabel(&#x27;信号2&#x27;);
+axis equal;
+
+% 低相关性的散点图
+subplot(3,2,6);
+scatter(data1_low, data2_low, &#x27;filled&#x27;);
+title(&#x27;低相关性散点图&#x27;);
+xlabel(&#x27;信号1&#x27;);
+ylabel(&#x27;信号2&#x27;);
+axis equal;
+
+% 调整图形布局
+sgtitle(&#x27;不同相关性情况下的正弦信号和散点图&#x27;);
+
+
+%% 风速时程的频谱分析：宽带、窄带、低频和高频
+clear; clc; close all;
+
+%% 参数设置
+Fs = 100; % 采样频率 (Hz)
+T = 60; % 总时间 (秒)
+N = Fs * T; % 样本点数
+t = (0:N-1) / Fs; % 时间向量
+
+%% 生成宽带信号
+% 使用白噪声模拟宽带谱信号
+broadband_signal = randn(size(t)); % 宽带白噪声信号
+
+%% 生成窄带信号
+% 使用一个或少数几个频率成分模拟窄带谱信号
+mid_freq = 1; % 中频成分 (Hz)
+narrowband_signal = sin(2 * pi * mid_freq * t) + 0.1 * sin(2 * pi * (mid_freq + 0.1) * t);
+
+%% 生成低频信号
+% 使用低频率成分模拟低频信号
+low_freq = 0.1; % 低频成分 (Hz)
+low_frequency_signal = sin(2 * pi * low_freq * t);
+
+%% 生成高频信号
+% 使用高频率成分模拟高频信号
+high_freq = 2; % 高频成分 (Hz)
+high_frequency_signal = sin(2 * pi * high_freq * t);
+
+%% 绘制宽带和窄带信号
+figure;
+% 宽带信号
+subplot(2,3,1);
+plot(t, broadband_signal, &#x27;b&#x27;);
+title(&#x27;宽带信号时程（白噪声）&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;风速波动&#x27;);
+
+subplot(2,3,2);
+[pxx_broadband, f_broadband] = pwelch(broadband_signal, [], [], [], Fs);
+loglog(f_broadband, pxx_broadband, &#x27;b&#x27;);
+title(&#x27;宽带信号功率谱（对数坐标）&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度&#x27;);
+
+% 宽带信号线性坐标
+subplot(2,3,3);
+plot(f_broadband, pxx_broadband, &#x27;b&#x27;);
+title(&#x27;宽带信号功率谱（线性坐标）&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度&#x27;);
+xlim([0, 10]); % 控制横坐标范围
+
+% 窄带信号
+subplot(2,3,4);
+plot(t, narrowband_signal, &#x27;r&#x27;);
+title(&#x27;窄带信号时程&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;风速波动&#x27;);
+
+subplot(2,3,5);
+[pxx_narrowband, f_narrowband] = pwelch(narrowband_signal, [], [], [], Fs);
+loglog(f_narrowband, pxx_narrowband, &#x27;r&#x27;);
+title(&#x27;窄带信号功率谱（对数坐标）&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度&#x27;);
+
+% 窄带信号线性坐标
+subplot(2,3,6);
+plot(f_narrowband, pxx_narrowband, &#x27;r&#x27;);
+title(&#x27;窄带信号功率谱（线性坐标）&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度&#x27;);
+xlim([0, 2]); % 控制横坐标范围
+
+
+figure;
+
+% 第一列
+subplot(2,3,1);
+plot(t, low_frequency_signal, &#x27;k&#x27;);
+title(&#x27;低频信号时程&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;风速波动&#x27;);
+xlim([0,20]);
+
+subplot(2,3,2);
+[pxx_low, f_low] = pwelch(low_frequency_signal, [], [], [], Fs);
+loglog(f_low, pxx_low, &#x27;k&#x27;);
+title(&#x27;低频信号功率谱 (对数坐标)&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度&#x27;);
+
+subplot(2,3,3);
+plot(f_low, pxx_low, &#x27;k&#x27;);
+title(&#x27;低频信号功率谱 (线性坐标)&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度&#x27;);
+xlim([0, 3]); % 控制横坐标范围
+
+% 第二列
+subplot(2,3,4);
+plot(t, high_frequency_signal, &#x27;r&#x27;);
+title(&#x27;高频信号时程&#x27;);
+xlabel(&#x27;时间 (s)&#x27;);
+ylabel(&#x27;风速波动&#x27;);
+xlim([0,20]);
+
+subplot(2,3,5);
+[pxx_high, f_high] = pwelch(high_frequency_signal, [], [], [], Fs);
+loglog(f_high, pxx_high, &#x27;r&#x27;);
+title(&#x27;高频信号功率谱 (对数坐标)&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度&#x27;);
+
+subplot(2,3,6);
+plot(f_high, pxx_high, &#x27;r&#x27;);
+title(&#x27;高频信号功率谱 (线性坐标)&#x27;);
+xlabel(&#x27;频率 (Hz)&#x27;);
+ylabel(&#x27;功率谱密度&#x27;);
+xlim([0, 3]); % 控制横坐标范围
+
+
+
+% MATLAB 脚本：风速剖面绘制
+
+% 定义基本风速 (单位：m/s)
+V_base = 38.4;  % 示例值，可以根据实际情况修改
+
+% 地表类别定义及相关参数
+surface_types = {&#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;, &#x27;D&#x27;};  % 地表类别
+conversion_factors = [1.174, 1.0, 0.785, 0.564];  % 转换系数
+exponents = [0.12, 0.16, 0.22, 0.3];  % 指数率
+gradient_heights = [300, 350, 400, 450];  % 梯度风高度
+
+% 用户选择的地表类别和高度
+selected_surface_type = &#x27;D&#x27;;  % 可以更改为 &#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;, &#x27;D&#x27;
+selected_height = 73;  % 可以更改为需要的高度
+
+% 查找对应的转换系数、指数和梯度风高度
+idx = find(strcmp(surface_types, selected_surface_type));
+conversion_factor = conversion_factors(idx);
+exponent = exponents(idx);
+gradient_height = gradient_heights(idx);
+
+% 计算10米高度处的风速
+V_10m = V_base * conversion_factor;
+
+% 定义高度范围
+heights = linspace(1, 500, 1000);
+
+% 预设风速剖面矩阵
+V_profiles = zeros(length(heights), length(surface_types));
+
+% 计算不同地表类别的风速剖面
+for j = 1:length(surface_types)
+    for i = 1:length(heights)
+        if heights(i) &lt;= gradient_heights(j)
+            V_profiles(i, j) = V_base * conversion_factors(j) * (heights(i) / 10) ^ exponents(j);
+        else
+            V_profiles(i, j) = V_base * conversion_factors(j) * (gradient_heights(j) / 10) ^ exponents(j);  % 超过梯度风高度，保持不变
+        end
+    end
+end
+
+% 绘制风速剖面
+figure;
+hold on;
+colors = {&#x27;r&#x27;, &#x27;g&#x27;, &#x27;b&#x27;, &#x27;k&#x27;};  % 为每种地表类别分配颜色
+line_widths = [1, 1, 1, 1];  % 默认线宽
+
+% 高亮用户选择的地表类别
+line_widths(idx) = 3;  % 高亮选择的地表类别
+for j = 1:length(surface_types)
+    plot(V_profiles(:, j), heights, &#x27;Color&#x27;, colors{j}, &#x27;LineWidth&#x27;, line_widths(j));
+end
+
+% 绘制10米高度处的风速横线
+plot([0, V_10m], [10, 10], &#x27;k--&#x27;, &#x27;LineWidth&#x27;, 1); 
+text(V_10m, 10, sprintf(&#x27;10m: %.2f m/s&#x27;, V_10m), &#x27;VerticalAlignment&#x27;, &#x27;bottom&#x27;, &#x27;HorizontalAlignment&#x27;, &#x27;left&#x27;);
+
+% 在选择的高度处绘制横线
+V_selected_height = V_10m * (selected_height / 10) ^ exponent;
+plot([0, V_selected_height], [selected_height, selected_height], &#x27;k--&#x27;, &#x27;LineWidth&#x27;, 1);
+text(V_selected_height, selected_height, sprintf(&#x27;%.1fm: %.2f m/s&#x27;, selected_height, V_selected_height), &#x27;VerticalAlignment&#x27;, &#x27;bottom&#x27;, &#x27;HorizontalAlignment&#x27;, &#x27;left&#x27;);
+
+% 图形设置
+xlabel(&#x27;风速 (m/s)&#x27;);
+ylabel(&#x27;高度 (m)&#x27;);
+title(&#x27;不同地表类别的风速剖面&#x27;);
+legend(surface_types, &#x27;Location&#x27;, &#x27;northwest&#x27;);
+grid on;
+hold off;
+
+% 输出10米高度处的风速
+fprintf(&#x27;基本风速，10米高度处风速为 %.2f m/s\n&#x27;, V_base);
+fprintf(&#x27;地表类型 %s，桥梁设计基本风速 10米高度处风速为 %.2f m/s\n&#x27;, selected_surface_type, V_10m);
+fprintf(&#x27;设计基准风速 高度 %.1f m: 风速 = %.2f m/s\n&#x27;, selected_height, V_selected_height);
+</code></pre></details></div></div></dialog><div id="toast" role="status" aria-live="polite"></div><script>/* Wind characteristics teaching engine. No dependencies; SI units throughout.
+ * Instantaneous longitudinal velocity: u = mean + v, where v is fluctuation.
+ * One-sided PSDs use frequency in Hz and units (m/s)^2/Hz.
+ */
+(function (root, factory) {
+  'use strict';
+  if (typeof module === 'object' && module.exports) module.exports = factory();
+  else root.WindEngine = factory();
+})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+  'use strict';
+
+  const DT = 0.25;
+  const DURATION = 600;
+  const COUNT = Math.round(DURATION / DT);
+  const HARMONICS = COUNT / 2 - 1; // Exclude DC and the special Nyquist bin.
+  const TWO_PI = 2 * Math.PI;
+  const cache = new Map();
+
+  function finite(value, name) {
+    if (!Number.isFinite(value)) throw new RangeError(name + ' must be finite.');
+    return value;
+  }
+
+  function positive(value, name) {
+    finite(value, name);
+    if (value <= 0) throw new RangeError(name + ' must be positive.');
+    return value;
+  }
+
+  function nonnegative(value, name) {
+    finite(value, name);
+    if (value < 0) throw new RangeError(name + ' cannot be negative.');
+    return value;
+  }
+
+  function hashSeed(seed) {
+    if (typeof seed === 'number' && Number.isFinite(seed)) return seed >>> 0;
+    const text = String(seed);
+    let hash = 2166136261;
+    for (let i = 0; i < text.length; i++) {
+      hash ^= text.charCodeAt(i);
+      hash = Math.imul(hash, 16777619);
+    }
+    return hash >>> 0;
+  }
+
+  function seededRng(seed) {
+    let state = hashSeed(seed == null ? 42 : seed);
+    return function () {
+      state = (state + 0x6D2B79F5) >>> 0;
+      let value = state;
+      value = Math.imul(value ^ (value >>> 15), value | 1);
+      value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
+      return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  function statistics(values) {
+    if (!values || !values.length) throw new RangeError('values must not be empty.');
+    let mean = 0;
+    let m2 = 0;
+    let min = Infinity;
+    let max = -Infinity;
+    for (let i = 0; i < values.length; i++) {
+      const value = finite(values[i], 'sample');
+      const delta = value - mean;
+      mean += delta / (i + 1);
+      m2 += delta * (value - mean);
+      if (value < min) min = value;
+      if (value > max) max = value;
+    }
+    const variance = Math.max(0, m2 / values.length);
+    const sigma = Math.sqrt(variance);
+    return { count: values.length, mean, variance, sigma, std: sigma, min, max,
+      rms: Math.sqrt(variance + mean * mean) };
+  }
+
+  function modelName(model) {
+    const name = String(model || 'kaimal').toLowerCase().replace(/[\s_-]/g, '');
+    if (name === 'kaimal') return 'kaimal';
+    if (name === 'vonkarman' || name === 'vonkármán' || name === 'karman') return 'vonKarman';
+    throw new RangeError('Unknown spectrum model: ' + model);
+  }
+
+  function psd(f, U, sigma, L, model) {
+    nonnegative(f, 'frequency');
+    positive(U, 'mean wind speed');
+    nonnegative(sigma, 'sigma');
+    positive(L, 'length scale');
+    const shape = modelName(model);
+    const x = f * L / U;
+    const base = 4 * sigma * sigma * L / U;
+    return shape === 'kaimal'
+      ? base / Math.pow(1 + 6 * x, 5 / 3)
+      : base / Math.pow(1 + 71 * x * x, 5 / 6);
+  }
+
+  function standardRecord(mean, length, seed) {
+    const key = [mean, length, hashSeed(seed)].join('|');
+    if (cache.has(key)) return cache.get(key);
+    const random = seededRng(seed);
+    const values = new Float64Array(COUNT);
+    const df = 1 / DURATION;
+    let bandVarianceFraction = 0;
+    for (let k = 1; k <= HARMONICS; k++) {
+      const f = k * df;
+      const density = psd(f, mean, 1, length, 'kaimal');
+      bandVarianceFraction += density * df;
+      const amplitude = Math.sqrt(2 * density * df);
+      const phase = TWO_PI * random();
+      const step = TWO_PI * f * DT;
+      const cosStep = Math.cos(step);
+      const sinStep = Math.sin(step);
+      let c = Math.cos(phase);
+      let s = Math.sin(phase);
+      for (let i = 0; i < COUNT; i++) {
+        values[i] += amplitude * c;
+        const nextC = c * cosStep - s * sinStep;
+        s = s * cosStep + c * sinStep;
+        c = nextC;
+        // Re-anchor the recurrence to limit accumulated floating-point drift.
+        if ((i & 255) === 255) {
+          c = Math.cos(phase + (i + 1) * step);
+          s = Math.sin(phase + (i + 1) * step);
+        }
+      }
+    }
+    const raw = statistics(values);
+    const normalized = Array.from(values, value => (value - raw.mean) / raw.sigma);
+    const result = { normalized, bandVarianceFraction, spectralScale: 1 / raw.variance };
+    if (cache.size >= 16) cache.delete(cache.keys().next().value);
+    cache.set(key, result);
+    return result;
+  }
+
+  function makeRecord(options) {
+    const o = options || {};
+    const mean = positive(o.mean == null ? 20 : o.mean, 'mean');
+    const intensity = nonnegative(o.intensity == null ? 0.15 : o.intensity, 'intensity');
+    const length = positive(o.length == null ? 120 : o.length, 'length');
+    const seed = o.seed == null ? 42 : o.seed;
+    const sigma = mean * intensity;
+    const basis = standardRecord(mean, length, seed);
+    const t = Array.from({ length: COUNT }, (_, i) => i * DT);
+    const v = basis.normalized.map(value => value * sigma);
+    const u = v.map(value => mean + value);
+    return { t, u, v, mean, sigma, intensity, length, seed,
+      dt: DT, duration: DURATION, count: COUNT, model: 'kaimal',
+      frequencyMin: 1 / DURATION, frequencyMax: HARMONICS / DURATION,
+      harmonicCount: HARMONICS, bandVarianceFraction: basis.bandVarianceFraction,
+      spectralScale: basis.spectralScale,
+      synthesisNote: 'Finite-band Kaimal harmonics; zero mean and scaled to target population standard deviation.' };
+  }
+
+  function movingGust(record, windowSeconds) {
+    if (!record || !record.u || !record.u.length) throw new RangeError('A nonempty wind record is required.');
+    const dt = positive(record.dt, 'dt');
+    const duration = record.u.length * dt;
+    const window = positive(windowSeconds == null ? 3 : windowSeconds, 'windowSeconds');
+    if (window < dt || window > duration) throw new RangeError('Gust window must be between dt and record duration.');
+    // Each sample represents [t_i,t_i+dt). Only complete windows are used.
+    // A fractional final interval permits exact, non-integer-multiple windows.
+    const sampleWidth = window / dt;
+    const nearest = Math.round(sampleWidth);
+    const whole = Math.abs(sampleWidth - nearest) < 1e-10 ? nearest : Math.floor(sampleWidth);
+    const fraction = Math.abs(sampleWidth - nearest) < 1e-10 ? 0 : sampleWidth - whole;
+    const occupied = whole + (fraction > 0 ? 1 : 0);
+    const count = record.u.length - occupied + 1;
+    const prefix = new Float64Array(record.u.length + 1);
+    for (let i = 0; i < record.u.length; i++) prefix[i + 1] = prefix[i] + finite(record.u[i], 'sample');
+    const values = new Array(count);
+    const t = new Array(count);
+    const startTime = record.t && record.t.length ? record.t[0] : 0;
+    let max = -Infinity;
+    let index = 0;
+    for (let i = 0; i < count; i++) {
+      const weightedSum = prefix[i + whole] - prefix[i] + (fraction ? fraction * record.u[i + whole] : 0);
+      values[i] = weightedSum / sampleWidth;
+      t[i] = startTime + i * dt + window / 2;
+      if (values[i] > max) { max = values[i]; index = i; }
+    }
+    const stats = statistics(record.u);
+    const mean = record.mean == null ? stats.mean : record.mean;
+    const sigma = record.sigma == null ? stats.sigma : record.sigma;
+    const start = startTime + index * dt;
+    return { t, values, max, index, start, end: start + window,
+      startIndex: index, endIndex: index + occupied - 1,
+      factor: mean !== 0 ? max / mean : null,
+      peakFactor: sigma > 0 ? (max - mean) / sigma : null,
+      windowSeconds: window, windowSamples: sampleWidth, count,
+      instantaneousMax: stats.max };
+  }
+
+  function spectrum(options) {
+    const o = options || {};
+    const mean = positive(o.mean == null ? 20 : o.mean, 'mean');
+    const intensity = nonnegative(o.intensity == null ? 0.15 : o.intensity, 'intensity');
+    const sigma = nonnegative(o.sigma == null ? mean * intensity : o.sigma, 'sigma');
+    const length = positive(o.length == null ? 120 : o.length, 'length');
+    const count = o.count == null ? 180 : o.count;
+    if (!Number.isInteger(count) || count < 2) throw new RangeError('count must be an integer of at least 2.');
+    const fMin = positive(o.fMin == null ? 0.001 : o.fMin, 'fMin');
+    const fMax = positive(o.fMax == null ? 2 : o.fMax, 'fMax');
+    if (fMax <= fMin) throw new RangeError('fMax must exceed fMin.');
+    const model = modelName(o.model);
+    const f = new Array(count);
+    const S = new Array(count);
+    const normalized = new Array(count);
+    const logSpan = Math.log(fMax / fMin);
+    for (let i = 0; i < count; i++) {
+      f[i] = fMin * Math.exp(logSpan * i / (count - 1));
+      S[i] = psd(f[i], mean, sigma, length, model);
+      normalized[i] = sigma > 0 ? f[i] * S[i] / (sigma * sigma) : null;
+    }
+    return { f, S, normalized, model, mean, sigma, intensity: sigma / mean,
+      length, fMin, fMax, units: '(m/s)²/Hz' };
+  }
+
+  function powerProfile(z, U10, alpha) {
+    nonnegative(U10, 'U10');
+    nonnegative(alpha, 'alpha');
+    if (Array.isArray(z) || ArrayBuffer.isView(z)) return Array.from(z, height => powerProfile(height, U10, alpha));
+    nonnegative(z, 'height');
+    return U10 * Math.pow(z / 10, alpha);
+  }
+
+  function logProfile(z, U10, z0) {
+    nonnegative(U10, 'U10');
+    positive(z0, 'roughness length');
+    if (z0 >= 10) throw new RangeError('roughness length must be below the 10 m reference height.');
+    if (Array.isArray(z) || ArrayBuffer.isView(z)) return Array.from(z, height => logProfile(height, U10, z0));
+    finite(z, 'height');
+    // Invalid near-ground points are returned as null so plots can show a gap.
+    if (z <= z0) return null;
+    return U10 * Math.log(z / z0) / Math.log(10 / z0);
+  }
+
+  function normalPdf(x, mean, sigma) {
+    finite(x, 'x');
+    finite(mean, 'mean');
+    nonnegative(sigma, 'sigma');
+    return sigma > 0 ? Math.exp(-0.5 * Math.pow((x - mean) / sigma, 2)) / (sigma * Math.sqrt(TWO_PI)) : null;
+  }
+
+  function distribution(recordOrValues, options) {
+    const values = recordOrValues && recordOrValues.u ? recordOrValues.u : recordOrValues;
+    const stats = statistics(values);
+    const o = options || {};
+    const count = o.bins == null ? 32 : o.bins;
+    if (!Number.isInteger(count) || count < 1) throw new RangeError('bins must be a positive integer.');
+    let min = o.min == null ? stats.min : finite(o.min, 'min');
+    let max = o.max == null ? stats.max : finite(o.max, 'max');
+    if (max === min && o.min == null && o.max == null) { min -= 0.5; max += 0.5; }
+    if (max <= min) throw new RangeError('max must exceed min.');
+    const width = (max - min) / count;
+    const counts = new Array(count).fill(0);
+    let inRange = 0;
+    for (const value of values) {
+      if (value < min || value > max) continue;
+      const i = Math.min(count - 1, Math.floor((value - min) / width));
+      counts[i]++;
+      inRange++;
+    }
+    const bins = counts.map((n, i) => ({
+      x0: min + i * width, x1: min + (i + 1) * width,
+      center: min + (i + 0.5) * width, count: n, density: n / (values.length * width)
+    }));
+    return { bins, x: bins.map(bin => bin.center), y: bins.map(bin => bin.density),
+      counts, width, min, max, total: values.length, inRange,
+      outside: values.length - inRange, stats, densityUnits: 's/m' };
+  }
+
+  return Object.freeze({ makeRecord, movingGust, psd, spectrum, powerProfile,
+    logProfile, distribution, normalPdf, statistics, seededRng,
+    constants: Object.freeze({ dt: DT, duration: DURATION, count: COUNT, harmonics: HARMONICS }) });
+});
+</script><script>/* Three-point longitudinal wind teaching model. No third-party dependencies.
+ * Load wind-engine.js first in a browser; Node resolves the adjacent file.
+ * Real normalized cross-spectrum / coherence amplitude: exp(-C f |d| / U).
+ * Magnitude-squared coherence is the square of that amplitude.
+ * Each finite realization is centered and calibrated to the requested sigma.
+ */
+(function (root, factory) {
+  'use strict';
+  if (typeof module === 'object' && module.exports) module.exports = factory(require('./wind-engine.js'));
+  else root.WindCorrelation = factory(root.WindEngine);
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (WindEngine) {
+  'use strict';
+  if (!WindEngine) throw new Error('Load wind-engine.js before wind-correlation.js.');
+
+  const DT = WindEngine.constants.dt;
+  const DURATION = WindEngine.constants.duration;
+  const COUNT = WindEngine.constants.count;
+  const HARMONICS = WindEngine.constants.harmonics;
+  const TWO_PI = 2 * Math.PI;
+  const cache = new Map();
+
+  function checked(value, name, allowZero) {
+    if (!Number.isFinite(value) || (allowZero ? value < 0 : value <= 0)) {
+      throw new RangeError(name + (allowZero ? ' must be finite and nonnegative.' : ' must be finite and positive.'));
+    }
+    return value;
+  }
+
+  function coherenceAmplitude(f, distance, mean, coherenceDecay) {
+    checked(f, 'frequency', true);
+    checked(distance, 'distance', true);
+    checked(mean, 'mean', false);
+    const decay = checked(coherenceDecay == null ? 8 : coherenceDecay, 'coherenceDecay', true);
+    return Math.exp(-decay * f * distance / mean);
+  }
+
+  function magnitudeSquaredCoherence(f, distance, mean, coherenceDecay) {
+    const amplitude = coherenceAmplitude(f, distance, mean, coherenceDecay);
+    return amplitude * amplitude;
+  }
+
+  function coherenceMatrix(f, spacing, mean, coherenceDecay) {
+    const rho = coherenceAmplitude(f, spacing, mean, coherenceDecay);
+    const far = rho * rho;
+    return [[1, rho, far], [rho, 1, rho], [far, rho, 1]];
+  }
+
+  function crossSpectralMatrix(f, mean, sigma, length, spacing, coherenceDecay) {
+    const density = WindEngine.psd(f, mean, sigma, length, 'kaimal');
+    return coherenceMatrix(f, spacing, mean, coherenceDecay).map(row => row.map(value => value * density));
+  }
+
+  function pearson(a, b) {
+    if (!a || !b || a.length !== b.length || !a.length) throw new RangeError('Equal nonempty sequences are required.');
+    const sa = WindEngine.statistics(a);
+    const sb = WindEngine.statistics(b);
+    if (sa.sigma === 0 || sb.sigma === 0) return null;
+    let covariance = 0;
+    for (let i = 0; i < a.length; i++) covariance += (a[i] - sa.mean) * (b[i] - sb.mean);
+    return Math.max(-1, Math.min(1, covariance / (a.length * sa.sigma * sb.sigma)));
+  }
+
+  function correlatedBasis(mean, length, seed, spacing, decay) {
+    const key = JSON.stringify([mean, length, seed, spacing, decay]);
+    if (cache.has(key)) return cache.get(key);
+    const random = WindEngine.seededRng(seed);
+    const raw = Array.from({ length: 3 }, () => new Float64Array(COUNT));
+    const df = 1 / DURATION;
+    let variance = 0;
+    let adjacentCovariance = 0;
+    let farCovariance = 0;
+    for (let k = 1; k <= HARMONICS; k++) {
+      const f = k * df;
+      const density = WindEngine.psd(f, mean, 1, length, 'kaimal');
+      const rho = coherenceAmplitude(f, spacing, mean, decay);
+      const innovationScale = Math.sqrt(Math.max(0, 1 - rho * rho));
+      const amplitude = Math.sqrt(2 * density * df);
+      variance += density * df;
+      adjacentCovariance += density * df * rho;
+      farCovariance += density * df * rho * rho;
+
+      // L L* = [[1,rho,rho²],[rho,1,rho],[rho²,rho,1]].
+      // Independent unit phasors have E[eps eps*]=1 and E[eps]=0.
+      // Recursion is a Cholesky factorization including the singular rho=1 case.
+      const phaseA = TWO_PI * random();
+      const phaseB = TWO_PI * random();
+      const phaseC = TWO_PI * random();
+      const reA = Math.cos(phaseA), imA = Math.sin(phaseA);
+      const reB = rho * reA + innovationScale * Math.cos(phaseB);
+      const imB = rho * imA + innovationScale * Math.sin(phaseB);
+      const reC = rho * reB + innovationScale * Math.cos(phaseC);
+      const imC = rho * imB + innovationScale * Math.sin(phaseC);
+      const step = TWO_PI * f * DT;
+      const cosStep = Math.cos(step), sinStep = Math.sin(step);
+      let c = 1, s = 0;
+      for (let i = 0; i < COUNT; i++) {
+        raw[0][i] += amplitude * (reA * c - imA * s);
+        raw[1][i] += amplitude * (reB * c - imB * s);
+        raw[2][i] += amplitude * (reC * c - imC * s);
+        const nextC = c * cosStep - s * sinStep;
+        s = s * cosStep + c * sinStep;
+        c = nextC;
+        if ((i & 255) === 255) {
+          c = Math.cos((i + 1) * step);
+          s = Math.sin((i + 1) * step);
+        }
+      }
+    }
+    const rawStats = raw.map(values => WindEngine.statistics(values));
+    const normalized = raw.map((values, point) => Array.from(values,
+      value => (value - rawStats[point].mean) / rawStats[point].sigma));
+    const correlations = normalized.map((a, i) => normalized.map((b, j) => i === j ? 1 : pearson(a, b)));
+    const adjacent = adjacentCovariance / variance;
+    const far = farCovariance / variance;
+    const expectedCorrelations = [[1, adjacent, far], [adjacent, 1, adjacent], [far, adjacent, 1]];
+    const result = { normalized, correlations, expectedCorrelations,
+      rawStats, bandVarianceFraction: variance };
+    if (cache.size >= 12) cache.delete(cache.keys().next().value);
+    cache.set(key, result);
+    return result;
+  }
+
+  function makeMulti(options) {
+    const o = options || {};
+    const mean = checked(o.mean == null ? 20 : o.mean, 'mean', false);
+    const intensity = checked(o.intensity == null ? 0.15 : o.intensity, 'intensity', true);
+    const length = checked(o.length == null ? 120 : o.length, 'length', false);
+    const spacing = checked(o.spacing == null ? 40 : o.spacing, 'spacing', true);
+    const coherenceDecay = checked(o.coherenceDecay == null ? 8 : o.coherenceDecay, 'coherenceDecay', true);
+    const seed = o.seed == null ? 42 : o.seed;
+    const sigma = checked(mean * intensity, 'sigma', true);
+    const basis = correlatedBasis(mean, length, seed, spacing, coherenceDecay);
+    const t = Array.from({ length: COUNT }, (_, i) => i * DT);
+    const series = basis.normalized.map((normalized, point) => {
+      const v = normalized.map(value => value * sigma);
+      return { t, v, u: v.map(value => mean + value), name: '测点 ' + 'ABC'[point],
+        position: point * spacing, mean, sigma, intensity, length, seed,
+        dt: DT, duration: DURATION, count: COUNT,
+        amplitudeCalibration: 1 / basis.rawStats[point].sigma,
+        spectralScale: 1 / basis.rawStats[point].variance };
+    });
+    const correlations = sigma > 0
+      ? basis.correlations.map(row => row.slice())
+      : Array.from({ length: 3 }, () => [null, null, null]);
+    const expectedCorrelations = basis.expectedCorrelations.map(row => row.slice());
+    return { t, series, correlations, expectedCorrelations,
+      mean, sigma, intensity, length, seed, spacing, coherenceDecay,
+      dt: DT, duration: DURATION, count: COUNT,
+      positions: series.map(point => point.position),
+      frequencyMin: 1 / DURATION, frequencyMax: HARMONICS / DURATION,
+      harmonicCount: HARMONICS, bandVarianceFraction: basis.bandVarianceFraction,
+      metrics: {
+        adjacentCorrelation: correlations[0][1],
+        farCorrelation: correlations[0][2],
+        meanPairwiseCorrelation: sigma > 0 ? (correlations[0][1] + correlations[0][2] + correlations[1][2]) / 3 : null,
+        expectedAdjacentCorrelation: expectedCorrelations[0][1],
+        expectedFarCorrelation: expectedCorrelations[0][2],
+        coherenceAmplitudeAt01Hz: coherenceAmplitude(0.1, spacing, mean, coherenceDecay),
+        magnitudeSquaredCoherenceAt01Hz: magnitudeSquaredCoherence(0.1, spacing, mean, coherenceDecay)
+      },
+      model: 'kaimal-exponential-real-cross-spectrum',
+      synthesisNote: 'Three-point finite-band synthesis; each point is centered and scaled to target population sigma. Realization correlations fluctuate around finite-band model expectations.',
+      coherenceNote: 'Model coherence amplitude is exp(-C f d/U); magnitude-squared coherence is exp(-2 C f d/U). These spectral quantities differ from the full-record Pearson correlation.' };
+  }
+
+  function coherenceSpectrum(options) {
+    const o = options || {};
+    const mean = checked(o.mean == null ? 20 : o.mean, 'mean', false);
+    const spacing = checked(o.spacing == null ? 40 : o.spacing, 'spacing', true);
+    const coherenceDecay = checked(o.coherenceDecay == null ? 8 : o.coherenceDecay, 'coherenceDecay', true);
+    const fMin = checked(o.fMin == null ? 0.001 : o.fMin, 'fMin', false);
+    const fMax = checked(o.fMax == null ? 2 : o.fMax, 'fMax', false);
+    const count = o.count == null ? 180 : o.count;
+    if (!Number.isInteger(count) || count < 2 || fMax <= fMin) throw new RangeError('Use count >= 2 and fMax > fMin.');
+    const f = Array.from({ length: count }, (_, i) => fMin * Math.exp(Math.log(fMax / fMin) * i / (count - 1)));
+    const pairs = [{ name: 'A–B / B–C', distance: spacing }, { name: 'A–C', distance: 2 * spacing }].map(pair => {
+      const amplitude = f.map(frequency => coherenceAmplitude(frequency, pair.distance, mean, coherenceDecay));
+      return { name: pair.name, distance: pair.distance, amplitude,
+        squared: amplitude.map(value => value * value) };
+    });
+    return { f, pairs, mean, spacing, coherenceDecay,
+      amplitude12: pairs[0].amplitude, amplitude13: pairs[1].amplitude,
+      squared12: pairs[0].squared, squared13: pairs[1].squared,
+      kind: 'theoretical-model', units: 'dimensionless' };
+  }
+
+  return Object.freeze({ makeMulti, coherenceAmplitude, magnitudeSquaredCoherence,
+    coherenceMatrix, crossSpectralMatrix, coherenceSpectrum, pearson });
+});
+</script><script>'use strict';
+const E=WindEngine,$=id=>document.getElementById(id), C={blue:'#1469c5',orange:'#c66a24',navy:'#17324e',gray:'#9aabba',teal:'#187f81',compare:'#987b49'};
+const initial={mean:20,intensity:15,length:120,seed:42,window:3,u10:20,alpha:.16,roughness:-1.3,height:100,frequency:.1};
+let s={...initial},tab='wind',record,baseline=null,spectrumMode='energy',showVK=true,raf=0,toastTimer;
+const chapters=[['wind','风速的两部分','平均风 · 脉动风','WIND DECOMPOSITION','风速，既有平均，也有起伏。','在同一段 10 分钟记录里，把风速拆开看。'],['gust','捕捉一次阵风','时间窗口 · 阵风因子','GUST & TIME WINDOW','一次阵风，持续多久才算数？','先做短时平均，再在整段记录里寻找最大值。'],['turbulence','风有多不稳定','标准差 · 湍流度','TURBULENCE INTENSITY','同样的风速，可以有不同的起伏。','标准差衡量绝对起伏，湍流度衡量相对起伏。'],['spectrum','从时间走向频率','能量分布 · 风谱','WIND SPECTRUM','风的起伏，也有快慢之分。','把脉动的方差，分配到不同的频率上。'],['profile','向高处寻找风','幂律 · 对数律','VERTICAL WIND PROFILE','同一片地表，风随高度怎样变化？','固定 10 m 参考点，观察两个模型的风速剖面。']];
+const fmt=(n,d=2)=>Number(n).toFixed(d), unit=(n,u='m/s',d=2)=>`${fmt(n,d)} <small>${u}</small>`;
+function toast(t){$('toast').textContent=t;$('toast').classList.add('visible');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('visible'),2500)}
+function range(key,label,min,max,step,units,digits=0){return `<label class="range-control"><span>${label}<output id="out-${key}"></output></span><input type="range" aria-label="${label}" data-key="${key}" id="input-${key}" min="${min}" max="${max}" step="${step}" value="${s[key]}"><div class="range-ends"><span>${min} ${units}</span><span>${max} ${units}</span></div></label>`}
+function syncValues(){for(const k of ['mean','intensity','length','u10','alpha','roughness','height']){if($('out-'+k))$('out-'+k).innerHTML=k==='roughness'?unit(10**s[k],'m',3):k==='alpha'?fmt(s[k],2):unit(s[k],k==='intensity'?'%':k==='length'||k==='height'?'m':'m/s',k==='mean'?1:0)}if($('sampleLabel'))$('sampleLabel').textContent=`示例风 ${s.seed} · 保留样本`;if($('windowValue'))$('windowValue').textContent=fmt(s.window,1)+' s'}
+function controls(){const p=tab==='profile';$('controls').classList.toggle('profile-controls',p);$('controls').innerHTML=p?range('u10','10 m 参考风速',5,30,1,'m/s')+range('alpha','幂律指数 α',.08,.3,.01,'')+range('roughness','粗糙度长度 z₀',-3,0,.05,'')+range('height','观察高度 z',10,300,5,'m'):range('mean','平均风速 Ū',10,25,.5,'m/s')+range('intensity','湍流度 Iᵤ',5,25,1,'%')+range('length','积分尺度 Lᵤ',20,300,10,'m')+`<div class="sample-control"><span class="live-dot"></span><span id="sampleLabel"></span><button id="newSample" class="button">换一段风</button></div>`;if(p)$('input-roughness').nextElementSibling.innerHTML='<span>0.001 m</span><span>1 m</span>';$('controls').querySelectorAll('input').forEach(el=>el.addEventListener('input',()=>{s[el.dataset.key]=+el.value;schedule()}));if($('newSample'))$('newSample').onclick=()=>{s.seed++;schedule();toast('已换一段随机风，参数保持不变')};syncValues()}
+function legend(items){return `<div class="legend">${items.map(([color,label])=>`<span class="${color}-dot">${label}</span>`).join('')}</div>`}
+function card(id,title,desc,leg=[],cls='',foot=''){return `<article class="card"><div class="card-head"><div><h2>${title}</h2><p>${desc}</p></div>${legend(leg)}</div><div class="chart ${cls}" id="${id}"></div>${foot?`<div class="chart-foot">${foot}</div>`:''}</article>`}
+function insight(title,text,extra='',tag='动手观察'){return `<article class="insight"><span class="tag">${tag}</span><h2>${title}</h2><p>${text}</p>${extra}</article>`}
+function metrics(items){return `<div class="metric-row">${items.map(([name,id],i)=>`<div class="${i===1?'accent':''}"><span>${name}</span><strong id="${id}">—</strong></div>`).join('')}</div>`}
+function layout(){
+ const commonFoot='<span>时间 / s · 600 s 记录 · Δt = 0.25 s</span><span>固定纵轴 0 ~ 50 m/s</span>';
+ if(tab==='wind')$('content').innerHTML=`<div class="wind-intro"><div class="equation"><span class="blue">V(t)</span><em>=</em><span>Ū</span><em>+</em><span class="orange">u′(t)</span><div><span>瞬时纵向风速</span><span>10 分钟平均</span><span>脉动分量</span></div></div><div id="flow" class="flow-field"></div></div>`+card('mainChart','一段风速记录','平均值决定曲线位置，脉动决定起伏幅度。',[['blue','瞬时风速 V(t)'],['navy','平均风速 Ū']],'',commonFoot)+`<div class="two-col">`+card('secondChart','减去平均值，还剩什么？','u′(t) = V(t) − Ū；本段脉动均值为 0。',[],'compact')+insight('平均风速调高，<br>脉动也会变大吗？','这里保持湍流度不变，所以 σᵤ = Iᵤ Ū 会随平均风速一起增大。平均值与起伏幅度是两个不同的量。','<div class="metric-line"><span>脉动标准差</span><strong id="sigmaRead"></strong></div><div class="note">改变 Ū 也会改变 Lᵤ/Ū 对应的时间尺度。合成教学样本，非实测风。</div>')+'</div>';
+ if(tab==='gust')$('content').innerHTML=`<div class="module-tools"><label>平均窗口 τ <input id="window" type="range" aria-label="阵风平均时长" min="0.5" max="20" step="0.5" value="${s.window}"><output id="windowValue"></output></label><button class="button" id="window3">3 秒</button><button class="button" id="window5">原代码：5 秒</button></div>`+metrics([['10 分钟平均风速','gustMean'],['短时平均最大值 · 阵风风速','gustMax'],['阵风因子 G = Vg,τ / Ū','gustFactor'],['原始采样峰值','rawMax']])+card('mainChart','先平均，再取最大值','着色窗口给出最大短时平均值的位置。',[['gray','原始风速'],['orange','滑动平均']],'tall','<span id="gustInterval"></span><span>固定纵轴 0 ~ 50 m/s</span>')+'<div class="two-col">'+card('secondChart','放大阵风发生的 30 秒','阴影宽度就是平均窗口，橙点标在窗口中心。',[],'compact')+insight('阵风风速不等于<br>某个采样点的峰值。','默认采用 3 秒平均窗口，在完整 10 分钟记录里寻找最大值。窗口变长通常使局部波动更平缓。','<div class="formula">V<sub>g,τ</sub> = max [平均<sub>τ</sub> V(t)]</div><div class="note">仅计算完整窗口，不补零。任意两种非嵌套窗口的最大值不必严格单调。</div>','概念辨析')+'</div>';
+ if(tab==='turbulence')$('content').innerHTML=metrics([['平均风速 Ū','turbMean'],['标准差 σᵤ','turbSigma'],['湍流度 Iᵤ = σᵤ / Ū','turbI'],['±1σ 内的样本占比','turbWithin']])+card('mainChart','给起伏一个可比较的尺度','浅橙色带表示 Ū ± σᵤ，它是标准差带，不是最大、最小包络。',[['blue','瞬时风速'],['orange','±1σ 范围']],'',commonFoot)+'<div class="two-col">'+card('secondChart','脉动风速的分布','柱形来自当前记录，橙线是相同 σ 的高斯参考分布。',[],'compact','<span>脉动风速 / m·s⁻¹</span><span>固定横轴 −30 ~ 30</span>')+insight('同样的标准差，<br>湍流度一定相同吗？','20 m/s 的平均风配上 2 m/s 的标准差，湍流度是 10%；10 m/s 的平均风配上同样的标准差，湍流度是 20%。','<button class="button" id="turbExample">对比这两个工况</button><div class="formula">Iᵤ = σᵤ / Ū</div><div class="note">标准差使用本段记录的均方根定义，分母为 N。</div>','先预测，再调参')+'</div>';
+ if(tab==='spectrum')$('content').innerHTML=`<div class="module-tools"><div class="segmented" role="group" aria-label="风谱显示方式"><button data-spectrum="energy">能量分布 fSᵤ / σᵤ²</button><button data-spectrum="psd">功率谱密度 Sᵤ</button></div><label class="check"><input id="showVK" type="checkbox" ${showVK?'checked':''}>对照 von Kármán 谱</label></div>`+card('mainChart','脉动能量，集中在哪些频率？','理论目标谱。不同表示方式采用各自固定坐标。',[['blue','Kaimal'],['orange','von Kármán']],'tall','<span>频率 f / Hz · 单边谱</span><span id="spectrumAxis"></span>')+`<div class="spectrum-zones"><span>低频 · 缓慢的大尺度起伏</span><span>高频 · 快速的小尺度起伏</span></div><div class="two-col">`+card('secondChart','同一幅值，不同频率','下面的正弦波只用于识别时间尺度。',[],'compact')+insight('积分尺度变大，<br>能量向低频移动。','平均风速不变时，更大的 Lᵤ 对应更长的相关时间尺度。增大湍流度会提高功率谱密度，但归一化谱形状保持不变。',`<label>示意波频率 <select id="demoFrequency" aria-label="示意波形频率"><option value="0.02">0.02 Hz</option><option value="0.1">0.1 Hz</option><option value="0.5">0.5 Hz</option></select></label><div class="formula">∫₀<sup>∞</sup> Sᵤ(f) df = σᵤ²</div><div class="note">归一化乘频谱相对于 ln f 的面积表示方差比例。时域记录按有限频带 Kaimal 谱合成后，校准目标 σ。</div>`,'连接时间与空间')+'</div>';
+ if(tab==='profile')$('content').innerHTML='<div class="profile-grid">'+card('mainChart','风速沿高度分布','两条曲线都通过同一个 10 m 参考点。',[['blue','幂律'],['orange','对数律']],'profile','<span>风速 / m·s⁻¹ · 高度 / m</span><span>固定坐标：0~90，0~300</span>')+insight('<span id="profileAt"></span>','固定 10 m 风速后，较大的 α 使幂律剖面更陡。z₀ 是粗糙度长度，单位为米；它不是幂律指数。','<div class="metric-line"><span class="blue">幂律</span><strong id="powerRead"></strong></div><div class="metric-line"><span class="orange">对数律</span><strong id="logRead"></strong></div><div class="formula">Ū(z) = Ū₁₀ (z/10)<sup>α</sup></div><div class="formula">Ū(z) = Ū₁₀ <span class="fraction"><span>ln(z/z₀)</span><span>ln(10/z₀)</span></span></div><div class="note">中性、水平匀质地表的教学比较；对数律设 d = 0，仅绘制 z ≥ 10 m。参考风速为本模块独立参数。</div>','在桥面高度读数')+'</div>';
+ if($('window')){$('window').oninput=e=>{s.window=+e.target.value;schedule()};[3,5].forEach(n=>$('window'+n).onclick=()=>{s.window=n;$('window').value=n;schedule()})}
+ if($('turbExample'))$('turbExample').onclick=()=>{s={...s,mean:20,intensity:10,length:120};baseline={state:{...s},record:make()};s={...s,mean:10,intensity:20,length:60};controls();update();toast('同一脉动样本、相同 σ=2 m/s，比较两种平均风速')};
+ document.querySelectorAll('[data-spectrum]').forEach(b=>b.onclick=()=>{spectrumMode=b.dataset.spectrum;update()});
+ if($('showVK'))$('showVK').onchange=e=>{showVK=e.target.checked;update()};
+ if($('demoFrequency')){$('demoFrequency').value=s.frequency;$('demoFrequency').onchange=e=>{s.frequency=+e.target.value;update()}}
+}
+function tick(n){if(n===0)return '0';if(Math.abs(n)<.01||Math.abs(n)>=10000)return n.toExponential(0).replace('e+','e');return Number(n.toPrecision(4)).toString()}
+function graph(id,o){
+ const el=$(id),W=Math.max(310,el.clientWidth-24),H=el.classList.contains('profile')?(W<520?400:520):el.classList.contains('tall')?320:el.classList.contains('compact')?225:255;
+ const m={l:57,r:24,t:32,b:38},pw=W-m.l-m.r,ph=H-m.t-m.b,tx=x=>o.logX?Math.log10(x):x,ty=y=>o.logY?Math.log10(y):y;
+ const X=x=>m.l+(tx(x)-tx(o.x[0]))/(tx(o.x[1])-tx(o.x[0]))*pw,Y=y=>m.t+ph-(ty(y)-ty(o.y[0]))/(ty(o.y[1])-ty(o.y[0]))*ph;
+ const xt=o.xt||Array.from({length:7},(_,i)=>o.x[0]+i*(o.x[1]-o.x[0])/6),yt=o.yt||Array.from({length:6},(_,i)=>o.y[0]+i*(o.y[1]-o.y[0])/5);
+ let z=`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="${o.title||'交互图形'}，横轴 ${o.x.join(' 到 ')}，纵轴 ${o.y.join(' 到 ')}，坐标固定" tabindex="0" style="font-family:Segoe UI,Microsoft YaHei,sans-serif;font-size:12px"><title>${o.title||'风特性图'}</title><rect width="${W}" height="${H}" fill="white"/><defs><clipPath id="clip-${id}"><rect x="${m.l}" y="${m.t}" width="${pw}" height="${ph}"/></clipPath></defs>`;
+ for(const v of yt)z+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(v)}" y2="${Y(v)}" stroke="#e4ecf3"/><text x="${m.l-10}" y="${Y(v)+4}" text-anchor="end" fill="#657b90">${tick(v)}</text>`;
+ for(const v of xt)z+=`<line x1="${X(v)}" x2="${X(v)}" y1="${m.t}" y2="${H-m.b}" stroke="#f0f4f8"/><text x="${X(v)}" y="${H-17}" text-anchor="middle" fill="#657b90">${tick(v)}</text>`;
+ z+=`<text x="${m.l}" y="17" fill="#657b90">${o.ylabel||''}</text><text x="${W-m.r}" y="${H-1}" text-anchor="end" fill="#657b90">${o.xlabel||''}</text><g clip-path="url(#clip-${id})">`;
+ for(const a of o.areas||[])z+=`<rect x="${X(a.x0??o.x[0])}" y="${Y(a.y1??o.y[1])}" width="${X(a.x1??o.x[1])-X(a.x0??o.x[0])}" height="${Y(a.y0??o.y[0])-Y(a.y1??o.y[1])}" fill="${a.color||'#f5ba793b'}"/>`;
+ for(const v of o.hlines||[])z+=`<line x1="${m.l}" x2="${W-m.r}" y1="${Y(v.value)}" y2="${Y(v.value)}" stroke="${v.color||C.navy}" stroke-dasharray="7 5" stroke-width="1.5"/>`;
+ let clipped=0;
+ for(const a of o.series||[]){
+  let path='';for(let i=0;i<a.x.length;i++){const x=a.x[i],y=a.y[i];if(!Number.isFinite(x)||!Number.isFinite(y)||o.logY&&y<=0)continue;if(y<o.y[0]||y>o.y[1])clipped++;path+=(path?'L':'M')+X(x).toFixed(2)+','+Y(y).toFixed(2)}
+  if(a.fill&&path)z+=`<path d="${path} L${X(a.x[a.x.length-1])},${Y(o.y[0])} L${X(a.x[0])},${Y(o.y[0])} Z" fill="${a.fill}"/>`;
+  if(a.bars){for(let i=0;i<a.x.length;i++){let width=pw*a.barWidth/(o.x[1]-o.x[0]);z+=`<rect x="${X(a.x[i])-width/2}" y="${Y(a.y[i])}" width="${Math.max(1,width-1)}" height="${Y(0)-Y(a.y[i])}" fill="${a.color||C.blue}" opacity=".6"/>`}}else z+=`<path d="${path}" fill="none" stroke="${a.color||C.blue}" stroke-width="${a.width||1.7}" stroke-linejoin="round" ${a.dash?'stroke-dasharray="6 5"':''} opacity="${a.opacity??1}"/>`;
+ }
+ for(const p of o.points||[])z+=`<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="5" fill="${p.color||C.orange}" stroke="white" stroke-width="2"/>`;
+ z+='</g></svg><div class="chart-tooltip"></div>'+(clipped?'<div class="clip-warning">部分数值超出固定范围</div>':'');el.innerHTML=z;el.dataset.axis=JSON.stringify({x:o.x,y:o.y,logX:!!o.logX,logY:!!o.logY});
+ const tip=el.querySelector('.chart-tooltip'),svg=el.querySelector('svg');function tipAt(fraction){fraction=Math.max(0,Math.min(1,fraction));const x=o.logX?10**(tx(o.x[0])+fraction*(tx(o.x[1])-tx(o.x[0]))):o.x[0]+fraction*(o.x[1]-o.x[0]);let txt=`${o.tipX||'x'} = ${tick(x)}`;
+ if(o.tipY){const height=o.y[1]-fraction*(o.y[1]-o.y[0]);txt=`高度 z = ${fmt(height,1)} m`;for(const a of o.series||[]){if(height<a.y[0]||height>a.y[a.y.length-1]){txt+=`<br>${a.name}：展示范围外`;continue}let j=1;while(j<a.y.length-1&&a.y[j]<height)j++;const r=(height-a.y[j-1])/(a.y[j]-a.y[j-1]);const value=a.x[j-1]+r*(a.x[j]-a.x[j-1]);txt+=`<br>${a.name}：${fmt(value,2)} m/s`}}
+ else for(const a of o.series||[]){if(a.noTip)continue;if(x<a.x[0]||x>a.x[a.x.length-1]){txt+=`<br>${a.name||'数值'}：展示范围外`;continue}let best=0,dist=Infinity;for(let i=0;i<a.x.length;i++){const d=Math.abs(tx(a.x[i])-tx(x));if(d<dist){dist=d;best=i}}txt+=`<br>${a.name||'数值'}：${tick(a.y[best])}`};tip.innerHTML=txt;tip.classList.add('visible');tip.style.left=Math.min(el.clientWidth-tip.offsetWidth-8,Math.max(8,m.l+fraction*pw-40))+'px'}
+ svg.onpointermove=e=>{const r=svg.getBoundingClientRect();tipAt(o.tipY?((e.clientY-r.top)/r.height*H-m.t)/ph:((e.clientX-r.left)/r.width*W-m.l)/pw)};svg.onpointerleave=()=>tip.classList.remove('visible');let k=.5;svg.onkeydown=e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();k=Math.max(0,Math.min(1,k+(e.key==='ArrowRight'?.02:-.02)));tipAt(k)}};svg.onblur=()=>tip.classList.remove('visible');
+}
+function make(){return E.makeRecord({mean:s.mean,intensity:s.intensity/100,length:s.length,seed:s.seed})}
+function timeGraph(id,extra={}){graph(id,{x:[0,600],y:[0,50],ylabel:'纵向风速 / m·s⁻¹',xlabel:'时间 / s',tipX:'t / s',title:'瞬时风速记录',series:[],...extra})}
+function compareSeries(key='u'){return baseline?[{x:baseline.record.t,y:baseline.record[key],name:'保存的工况',color:C.compare,dash:true,opacity:.6,width:1.5}]:[]}
+function windSeries(){return {x:record.t,y:record.u,name:'V(t) / m·s⁻¹',color:C.blue,width:1.45}}
+function flow(){if(!$('flow'))return;let p='';for(let k=0;k<6;k++){const y=10+k*14,amp=s.intensity*.13;p+=`<path d="M0 ${y} Q80 ${y-amp} 160 ${y} T320 ${y} T480 ${y}" stroke="#388fba" stroke-width="${k%2?1:1.4}" fill="none" opacity="${.35+k*.09}" stroke-dasharray="${8+s.mean/2} 20" style="animation:flow ${160/s.mean}s linear infinite;animation-delay:-${k*.4}s"/>`}$('flow').innerHTML=`<svg viewBox="0 0 480 105" aria-label="平均风和脉动的流动示意">${p}<path d="M330 91V36M397 91V36M320 70H410M323 70Q362 30 407 70" fill="none" stroke="#64809a" stroke-width="2"/><path d="M338 59V70M346 50V70M354 45V70M370 45V70M378 50V70M386 59V70" stroke="#8a9fb2"/></svg><span class="flow-label">流动示意 · 非流场求解</span>`}
+function update(){record=make();syncValues();const b=baseline;$('compareNotice').hidden=!b;if(b){const a=b.state;$('compareNotice').innerHTML=(tab==='profile'?`虚线：Ū₁₀ = ${a.u10} m/s，α = ${fmt(a.alpha)}，z₀ = ${fmt(10**a.roughness,3)} m`:`虚线：Ū = ${a.mean} m/s，Iᵤ = ${a.intensity}%，Lᵤ = ${a.length} m，样本 ${a.seed}${tab==='gust'?`，平均窗口 τ=${a.window} s`:''}`)+'<button id="clearCompare">清除对比 ×</button>';$('clearCompare').onclick=()=>{baseline=null;update()}}
+ if(tab==='wind'){flow();timeGraph('mainChart',{hlines:[{value:record.mean}],series:[...compareSeries(),windSeries()]});graph('secondChart',{x:[0,600],y:[-25,25],ylabel:'脉动 u′ / m·s⁻¹',xlabel:'时间 / s',tipX:'t / s',title:'脉动风速',hlines:[{value:0}],series:[...compareSeries('v'),{x:record.t,y:record.v,color:C.orange,name:'u′ / m·s⁻¹',width:1.3}]});$('sigmaRead').innerHTML=unit(record.sigma)}
+ if(tab==='gust'){const g=E.movingGust(record,s.window),raw=E.statistics(record.u);$('gustMean').innerHTML=unit(record.mean);$('gustMax').innerHTML=unit(g.max);$('gustFactor').textContent=fmt(g.factor,3);$('rawMax').innerHTML=unit(raw.max);$('gustInterval').textContent=`最大窗口 ${fmt(g.start,2)} ~ ${fmt(g.end,2)} s`;const series=[{...windSeries(),color:C.gray,width:1,opacity:.65},{x:g.t,y:g.values,name:`${s.window}s 平均 / m·s⁻¹`,color:C.orange,width:2}];if(b){const bg=E.movingGust(b.record,b.state.window);series.unshift({x:bg.t,y:bg.values,color:C.compare,dash:true,name:`保存的 ${b.state.window}s 平均`})}const extras={areas:[{x0:g.start,x1:g.end}],hlines:[{value:record.mean}],points:[{x:g.t[g.index],y:g.max}],series};timeGraph('mainChart',extras);const start=Math.max(0,Math.min(570,g.t[g.index]-15));timeGraph('secondChart',{...extras,x:[start,start+30],xt:Array.from({length:4},(_,i)=>start+i*10),title:'阵风窗口放大'})}
+ if(tab==='turbulence'){$('turbMean').innerHTML=unit(record.mean);$('turbSigma').innerHTML=unit(record.sigma);$('turbI').innerHTML=unit(record.intensity*100,'%',1);$('turbWithin').innerHTML=unit(100*Array.from(record.v).filter(v=>Math.abs(v)<=record.sigma).length/record.v.length,'%',1);timeGraph('mainChart',{areas:[{y0:record.mean-record.sigma,y1:record.mean+record.sigma}],hlines:[{value:record.mean}],series:[...compareSeries(),windSeries()]});const hist=E.distribution(record.v,{bins:60,min:-30,max:30}),xx=Array.from({length:601},(_,i)=>-30+i*.1),yy=xx.map(x=>E.normalPdf(x,0,record.sigma));let curves=[];if(b)curves.push({x:xx,y:xx.map(x=>E.normalPdf(x,0,b.record.sigma)),name:'保存的高斯参考',color:C.compare,dash:true});graph('secondChart',{x:[-30,30],y:[0,1],xlabel:'脉动 u′ / m·s⁻¹',ylabel:'概率密度 / (m/s)⁻¹',title:'脉动风速分布',series:[{x:hist.x,y:hist.y,bars:true,barWidth:1,name:'样本密度',color:C.blue},...curves,{x:xx,y:yy,color:C.orange,name:'高斯参考'}]});if(hist.outside)$('secondChart').insertAdjacentHTML('beforeend',`<div class="clip-warning">${hist.outside} 个样本在固定横轴范围外</div>`)}
+ if(tab==='spectrum'){document.querySelectorAll('[data-spectrum]').forEach(el=>el.classList.toggle('active',el.dataset.spectrum===spectrumMode));const energy=spectrumMode==='energy',spec=E.spectrum({mean:s.mean,intensity:s.intensity/100,length:s.length}),vk=E.spectrum({mean:s.mean,intensity:s.intensity/100,length:s.length,model:'vonKarman'}),key=energy?'normalized':'S';let curves=[];if(b){const old=E.spectrum({mean:b.state.mean,intensity:b.state.intensity/100,length:b.state.length});curves.push({x:old.f,y:old[key],name:'保存的 Kaimal',color:C.compare,dash:true})}curves.push({x:spec.f,y:spec[key],name:'Kaimal',color:C.blue,width:2.6,fill:energy?'#1469c515':null});if(showVK)curves.push({x:vk.f,y:vk[key],name:'von Kármán',color:C.orange,width:2,dash:true});graph('mainChart',{x:[.001,2],y:energy?[0,.5]:[.00001,10000],logX:true,logY:!energy,xt:[.001,.01,.1,1,2],yt:energy?[0,.1,.2,.3,.4,.5]:[.00001,.001,.1,10,1000,10000],ylabel:energy?'f Sᵤ(f) / σᵤ²':'Sᵤ(f) / (m/s)²/Hz',xlabel:'频率 f / Hz',tipX:'f / Hz',title:'理论风谱',series:curves});$('spectrumAxis').textContent=energy?'固定纵轴 0 ~ 0.5':'固定对数纵轴 10⁻⁵ ~ 10⁴';const t=Array.from({length:601},(_,i)=>i*.1);graph('secondChart',{x:[0,60],y:[-1.5,1.5],xlabel:'时间 / s',ylabel:'单位幅值（示意）',tipX:'t / s',title:'正弦波频率示意',series:[{x:t,y:t.map(t=>Math.sin(2*Math.PI*s.frequency*t)),name:'正弦波',color:C.teal,width:2}],hlines:[{value:0}]})}
+ if(tab==='profile'){const z=Array.from({length:291},(_,i)=>i+10),power=z.map(z=>E.powerProfile(z,s.u10,s.alpha)),log=z.map(z=>E.logProfile(z,s.u10,10**s.roughness));let curves=[];if(b){curves.push({x:z.map(z=>E.powerProfile(z,b.state.u10,b.state.alpha)),y:z,name:'保存的幂律',color:C.compare,dash:true});curves.push({x:z.map(z=>E.logProfile(z,b.state.u10,10**b.state.roughness)),y:z,name:'保存的对数律',color:C.compare,dash:true,opacity:.5})}curves.push({x:power,y:z,name:'幂律',color:C.blue,width:2.8},{x:log,y:z,name:'对数律',color:C.orange,width:2.5});const up=E.powerProfile(s.height,s.u10,s.alpha),ul=E.logProfile(s.height,s.u10,10**s.roughness);graph('mainChart',{x:[0,90],y:[0,300],xt:[0,15,30,45,60,75,90],yt:[0,50,100,150,200,250,300],xlabel:'风速 / m·s⁻¹',ylabel:'高度 z / m',tipY:true,tipX:'风速 / m·s⁻¹',title:'风速沿高度分布',series:curves,hlines:[{value:10,color:'#91a7b9'},{value:s.height,color:C.teal}],points:[{x:s.u10,y:10,color:C.navy},{x:up,y:s.height,color:C.blue},{x:ul,y:s.height,color:C.orange}]});$('profileAt').textContent=`${s.height} m 高处的风`;$('powerRead').innerHTML=unit(up);$('logRead').innerHTML=unit(ul)}
+}
+function schedule(){syncValues();cancelAnimationFrame(raf);raf=requestAnimationFrame(update)}
+function navigate(key){tab=chapters.some(c=>c[0]===key)?key:'wind';const i=chapters.findIndex(c=>c[0]===tab),c=chapters[i];$('eyebrow').textContent=`0${i+1} / ${c[3]}`;$('title').textContent=c[4];$('subtitle').textContent=c[5];document.querySelectorAll('.nav').forEach(b=>{b.classList.toggle('active',b.dataset.tab===tab);b.setAttribute('aria-current',b.dataset.tab===tab?'page':'false')});controls();layout();update()}
+function download(text,type,name){const blob=new Blob([text],{type}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+$('navigation').innerHTML=chapters.map((c,i)=>`<button class="nav" data-tab="${c[0]}"><span>0${i+1}</span><div>${c[1]}<small>${c[2]}</small></div></button>`).join('');document.querySelectorAll('.nav').forEach(b=>b.onclick=()=>{location.hash=b.dataset.tab});window.addEventListener('hashchange',()=>navigate(location.hash.slice(1)));
+function reset(){s={...initial};baseline=null;controls();layout();update();toast('已恢复初始参数和样本 42')}
+$('reset').onclick=reset;$('resetMobile').onclick=reset;$('guideToggle').onclick=$('guideMobile').onclick=()=>$('guide').showModal();$('guideClose').onclick=()=>$('guide').close();$('freeze').onclick=()=>{baseline={state:{...s},record};update();toast('已保存当前工况，调节参数即可比较')};
+$('export').onclick=()=>{const svg=$('mainChart').querySelector('svg');download(svg.outerHTML,'image/svg+xml;charset=utf-8',`风特性-${tab}-U${s.mean}-I${s.intensity}.svg`);toast('已导出带固定坐标的矢量图')};
+$('downloadData').onclick=()=>{let csv='\ufeff# 合成教学记录; mean='+s.mean+' m/s; intensity='+s.intensity+'%; length='+s.length+' m; seed='+s.seed+'; dt=.25 s; duration=600 s\n时间_s,瞬时纵向风速_m_s,脉动风速_m_s,平均风速_m_s\n';for(let i=0;i<record.t.length;i++)csv+=`${record.t[i]},${record.u[i]},${record.v[i]},${record.mean}\n`;download(csv,'text/csv;charset=utf-8','风特性-样本'+s.seed+'.csv');toast('已下载当前 10 分钟风速记录')};
+window.addEventListener('resize',schedule);navigate(location.hash.slice(1));
+</script><script>'use strict';
+// Teaching interactions kept separate from the numerical and plotting modules.
+const oldLayout=layout,oldUpdate=update,oldControls=controls,oldReset=reset,oldNavigate=navigate;
+let scan=0,playing=false,playHandle=0,lastFrame=0,scanCache=null,scanKey='',spacing=40,multiCache=null,multiKey='';
+const definition=(name,text,math='')=>`<div class="definition"><div><strong>${name}</strong><p>${text}</p></div>${math?`<div class="definition-math">${math}</div>`:''}</div>`;
+chapters.splice(4,0,['correlation','多点的风同步吗','间距 · 风速相关性','SPATIAL CORRELATION','桥的不同位置，会一起起风吗？','看三个测点的风速是否一起变大、一起变小。']);
+chapters[1][4]='阵风：用一个小窗口，慢慢找。';
+chapters[1][5]='窗口内先求平均，窗口向右移动，就得到一条新的曲线。';
+chapters[2][4]='湍流度：风的起伏，相对有多大？';
+chapters[2][5]='先用标准差描述起伏大小，再除以平均风速。';
+function stopScan(){playing=false;cancelAnimationFrame(playHandle);if($('playScan'))$('playScan').textContent='▶ 播放滑动过程'}
+function bindNavigation(){
+ $('navigation').innerHTML=chapters.map((c,i)=>`<button class="nav" data-tab="${c[0]}"><span>0${i+1}</span><div>${c[1]}<small>${c[2]}</small></div></button>`).join('');
+ document.querySelectorAll('.nav').forEach(b=>b.onclick=()=>{location.hash=b.dataset.tab});
+}
+controls=function(){
+ oldControls();
+ const basic=['wind','gust','turbulence','correlation'].includes(tab);
+ $('controls').classList.toggle('basic-controls',basic);
+ if(basic){const label=$('input-length').closest('label'),details=document.createElement('details');details.className='advanced-controls';details.innerHTML='<summary>更多参数：积分尺度</summary><p>积分尺度描述起伏的空间大小。本课先保持默认值，学到风谱时再调整。</p>';details.append(label);$('controls').append(details)}
+};
+function gustLayout(){
+ $('content').innerHTML=definition('阵风风速是什么？','把每个短时间窗口内的风速求平均，再取这些平均值里最大的一个。默认窗口是 3 秒。','V<sub>g,τ</sub> = 最大的 τ 秒平均风速')+
+ `<div class="module-tools"><label>每个窗口多长？ <input id="window" type="range" aria-label="阵风平均时长" min="0.5" max="20" step="0.5" value="${s.window}"><output id="windowValue"></output></label><div class="preset-buttons"><button class="button" id="window3">3 秒</button><button class="button" id="window5">5 秒</button></div></div>
+ <div class="scan-controls"><button class="button primary" id="playScan">▶ 播放滑动过程</button><button class="button" id="restartScan">↺ 从头演示</button><label>手动移动窗口<input id="scanSeek" type="range" min="0" max="100" step="0.25" value="${scan*100}" aria-label="手动移动窗口"></label></div>
+ <p class="process-caption">① 圈出一小段风速 <span>→</span> ② 求这一段的平均值 <span>→</span> ③ 在下图留下一个点</p>`+
+ card('mainChart','① 窗口沿原始风速向右移动','这段 60 秒示例包含整段记录的最强阵风。橙色短线表示当前窗口平均值。',[['blue','原始风速'],['orange','当前窗口']],'', '<span id="scanInterval"></span><span>固定纵轴 0 ~ 50 m/s</span>')+
+ `<div class="scan-readings"><div><span>这个窗口的平均风速</span><strong id="scanAverage"></strong></div><span class="readings-arrow">↓ 留下一个点</span><div><span>到目前为止，最大的平均值</span><strong id="scanMax"></strong></div></div>`+
+ card('secondChart','② 平均值逐点连成一条新曲线','播放过程中，曲线只画到窗口已经经过的位置。',[['orange','滑动平均风速']],'', '<span id="scanProgress"></span><span>横轴、纵轴与上图一致</span>')+
+ definition('阵风系数是什么？','它表示：这一阵风的风速，是平均风速的几倍。分子是阵风风速，分母是同一段 10 分钟记录的平均风速。','G = 阵风风速 ÷ 平均风速')+
+ metrics([['10 分钟平均风速 Ū','gustMean'],['τ 秒阵风风速 Vg,τ','gustMax'],['阵风系数 G','gustFactor'],['原始采样峰值（用于区别）','rawMax']])+
+ `<div class="plain-example" id="gustExample"></div><p class="note">上面的动画演示 60 秒；这里的最终阵风风速和阵风系数使用完整 600 秒记录计算。<span id="gustInterval"></span></p>`;
+ $('window').oninput=e=>{stopScan();scan=0;s.window=+e.target.value;schedule()};
+ [3,5].forEach(n=>$('window'+n).onclick=()=>{stopScan();scan=0;s.window=n;$('window').value=n;schedule()});
+ $('playScan').onclick=()=>{if(playing){stopScan();return}if(scan>=1)scan=0;playing=true;lastFrame=0;$('playScan').textContent='Ⅱ 暂停';playHandle=requestAnimationFrame(advanceScan)};
+ $('restartScan').onclick=()=>{stopScan();scan=0;renderScan()};
+ $('scanSeek').oninput=e=>{stopScan();scan=+e.target.value/100;renderScan()};
+}
+function advanceScan(time){if(!playing||tab!=='gust')return;if(!lastFrame)lastFrame=time;const elapsed=Math.min(250,time-lastFrame);if(elapsed>=80){scan=Math.min(1,scan+elapsed/18000);lastFrame=time;renderScan()}if(scan>=1){stopScan();$('playScan').textContent='↻ 再播放一次'}else playHandle=requestAnimationFrame(advanceScan)}
+function renderScan(){
+ if(tab!=='gust'||!scanCache)return;
+ const {g,start,end,indices}=scanCache,last=indices[Math.min(indices.length-1,Math.floor(scan*(indices.length-1)))],first=indices[0],current=g.values[last],left=g.t[last]-s.window/2,right=left+s.window;
+ const ix=indices.filter(i=>i<=last),xx=ix.map(i=>g.t[i]),yy=ix.map(i=>g.values[i]);let maxIndex=first;for(let i=first;i<=last;i++)if(g.values[i]>g.values[maxIndex])maxIndex=i;
+ const rawIndices=record.t.map((v,i)=>i).filter(i=>record.t[i]>=start&&record.t[i]<=end),rx=rawIndices.map(i=>record.t[i]),ry=rawIndices.map(i=>record.u[i]);
+ const opts={x:[start,end],y:[0,50],xt:[0,15,30,45,60].map(x=>x+start),yt:[0,10,20,30,40,50],ylabel:'风速 / m·s⁻¹',xlabel:'时间 / s',tipX:'时间 / s'};
+ graph('mainChart',{...opts,title:'窗口在原始风速记录上滑动',areas:[{x0:left,x1:right}],hlines:[{value:record.mean,color:'#879bad'}],series:[{x:rx,y:ry,color:C.blue,name:'原始风速',width:1.8},{x:[left,right],y:[current,current],color:C.orange,width:3,name:'当前窗口平均'}],points:[{x:g.t[last],y:current,color:C.orange}]});
+ const curves=[];if(baseline){const old=E.movingGust(baseline.record,baseline.state.window),ii=old.t.map((_,i)=>i).filter(i=>old.t[i]>=start&&old.t[i]<=end);curves.push({x:ii.map(i=>old.t[i]),y:ii.map(i=>old.values[i]),name:`保存的 ${baseline.state.window}s 平均`,color:C.compare,dash:true,opacity:.6})}
+ curves.push({x:xx,y:yy,color:C.orange,name:`${s.window}s 平均`,width:2.8});
+ graph('secondChart',{...opts,title:'滑动平均曲线逐步生成',series:curves,hlines:[{value:record.mean,color:'#879bad'}],points:[{x:g.t[last],y:current,color:C.orange},{x:g.t[maxIndex],y:g.values[maxIndex],color:C.teal}]});
+ $('scanSeek').value=scan*100;$('scanInterval').textContent=`窗口：${fmt(left,2)} ~ ${fmt(right,2)} 秒`;$('scanAverage').innerHTML=unit(current);$('scanMax').innerHTML=unit(g.values[maxIndex]);$('scanProgress').textContent=`已经留下 ${ix.length} 个平均值；绿色点是目前最大值`;
+}
+function correlationLayout(){
+ $('content').innerHTML=definition('风速相关性是什么？','两处风速如果常常一起变大、一起变小，就说它们相关性高。相距较远时，起伏通常更不一致。')+
+ `<div class="spacing-panel"><label>相邻测点间距 d<input id="spacing" type="range" min="0" max="150" step="5" value="${spacing}" aria-label="相邻测点间距"><output id="spacingValue"></output></label><div class="preset-buttons"><button class="button" data-spacing="0">重合：0 m</button><button class="button" data-spacing="20">靠近：20 m</button><button class="button" data-spacing="120">拉远：120 m</button></div></div><div id="bridgePoints"></div>`+
+ card('mainChart','三个位置的风，会一起起伏吗？','只画各点减去平均值后的脉动风速，便于比较升降是否同步。',[['blue','测点 A'],['orange','测点 B'],['navy','测点 C']],'', '<span>展示前 60 秒</span><span>固定纵轴 −25 ~ 25 m/s</span>')+
+ `<div class="two-col">`+card('secondChart','把 A、B 同一时刻的风配成一对','每个点对应一个时刻。越接近对角线，A、B 的起伏越一致。',[],'compact')+
+ `<article class="insight"><span class="tag">给同步程度一个数</span><h2>相关系数 r</h2><p><b>接近 1：</b>常常一起升、一起降。<br><b>接近 0：</b>看不出明显的一起升降。<br><b>接近 −1：</b>一个升，另一个降。</p><div id="correlationMatrix"></div><p class="note">用完整 600 秒样本计算。r 接近 0 不等于完全独立；有限样本的数值会有波动。</p></article></div>`+
+ `<details class="learn-more"><summary>再进一步：慢起伏和快起伏，谁更同步？</summary><p>同样的距离，缓慢的大尺度起伏往往更同步，快速的小尺度起伏更容易不同步。下面把关联程度分到不同频率看。</p>`+card('coherenceChart','各频率上的关联程度（理论）','这里画的是相干平方 γ²，范围 0~1。它和整段相关系数 r 不同：相干性允许相位差，不一定代表同一时刻同步。',[['blue','相邻 A–B'],['orange','远点 A–C']],'compact')+`<p class="note">教学模型：三个点处于相同高度、沿桥轴的横风方向。相干幅值采用 exp(−8 f d/Ū)，相干平方为其平方；每个频率的空间谱矩阵用于合成三点随机风。各点再校准本段平均值和标准差。本页另生成一组具有相同均值和标准差的三点风，用来比较空间差异，不是具体桥梁的设计模型。</p></details>`;
+ $('spacing').oninput=e=>{spacing=+e.target.value;schedule()};document.querySelectorAll('[data-spacing]').forEach(b=>b.onclick=()=>{spacing=+b.dataset.spacing;$('spacing').value=spacing;update()});
+ $('content').querySelector('.learn-more').ontoggle=()=>{if(tab==='correlation')renderCorrelation()};
+}
+function renderCorrelation(){
+ if(tab!=='correlation')return;const key=[s.mean,s.intensity,s.length,s.seed,spacing].join('|');if(key!==multiKey){multiCache=WindCorrelation.makeMulti({mean:s.mean,intensity:s.intensity/100,length:s.length,seed:s.seed,spacing});multiKey=key}const m=multiCache;
+ $('spacingValue').innerHTML=unit(spacing,'m',0);const positions=[75,75+spacing*1.1,75+spacing*2.2],colors=[C.blue,C.orange,C.navy];let points='';if(spacing===0)points=`<circle cx="75" cy="52" r="8" fill="${C.blue}"/><text x="75" y="84" text-anchor="middle">A = B = C</text>`;else for(let i=0;i<3;i++)points+=`<circle cx="${positions[i]}" cy="52" r="7" fill="${colors[i]}"/><text x="${positions[i]}" y="84" text-anchor="middle">${'ABC'[i]}</text>`;
+ $('bridgePoints').innerHTML=`<svg viewBox="0 0 480 110" role="img" aria-label="桥上同一高度三个测点，相邻间距${spacing}米"><path d="M25 52H455M40 59H440" stroke="#a6b9ca" stroke-width="3"/><path d="M230 4v28m-5-5 5 5 5-5" fill="none" stroke="#187f81" stroke-width="2"/><text x="245" y="22" font-size="13" fill="#60748a">来风方向</text>${points}<text x="260" y="103" text-anchor="middle" font-size="12" fill="#60748a">A–B = B–C = ${spacing} m；A–C = ${spacing*2} m</text></svg>`;
+ const n=241,t=m.t.slice(0,n);graph('mainChart',{x:[0,60],y:[-25,25],xt:[0,15,30,45,60],yt:[-25,-12.5,0,12.5,25],ylabel:'脉动风速 / m·s⁻¹',xlabel:'时间 / s',tipX:'时间 / s',title:'三个测点的脉动风速',series:m.series.map((p,i)=>({x:t,y:p.v.slice(0,n),color:colors[i],name:p.name,width:1.8,opacity:.85})),hlines:[{value:0}]});
+ const A=m.series[0].v,B=m.series[1].v;scatterPlot('secondChart',A,B,m.correlations[0][1]);
+ $('correlationMatrix').innerHTML=`<table class="corr-matrix"><caption>相关系数（当前 10 分钟）</caption><thead><tr><th></th><th>A</th><th>B</th><th>C</th></tr></thead><tbody>${m.correlations.map((row,i)=>`<tr><th>${'ABC'[i]}</th>${row.map(v=>`<td style="background:rgba(20,105,197,${.04+Math.max(0,v)*.14})">${fmt(v,2)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+ if($('coherenceChart').clientWidth){const sp=WindCorrelation.coherenceSpectrum({mean:s.mean,spacing});graph('coherenceChart',{x:[.001,2],y:[0,1],logX:true,xt:[.001,.01,.1,1,2],yt:[0,.25,.5,.75,1],ylabel:'相干平方 γ²',xlabel:'频率 / Hz',title:'不同频率上的空间相干平方',series:[{x:sp.f,y:sp.squared12,color:C.blue,name:'A–B',width:2},{x:sp.f,y:sp.squared13,color:C.orange,name:'A–C',width:2}]})}
+}
+function scatterPlot(id,a,b,r){
+ graph(id,{x:[-25,25],y:[-25,25],xt:[-25,-12.5,0,12.5,25],yt:[-25,-12.5,0,12.5,25],xlabel:'A 点脉动 / m·s⁻¹',ylabel:'B 点脉动 / m·s⁻¹',title:'两点风速散点图',series:[{x:[-25,25],y:[-25,25],color:'#9bafc0',dash:true,noTip:true}]});
+ const svg=$(id).querySelector('svg'),W=svg.viewBox?.baseVal?.width||+svg.getAttribute('viewBox').split(' ')[2],H=+svg.getAttribute('viewBox').split(' ')[3],pw=W-81,ph=H-70;let circles='',outside=0;for(let i=0;i<a.length;i+=4){if(a[i]<-25||a[i]>25||b[i]<-25||b[i]>25){outside++;continue}circles+=`<circle cx="${57+(a[i]+25)/50*pw}" cy="${32+(25-b[i])/50*ph}" r="2.4" fill="#1469c5" opacity=".26"/>`}
+ const ns='http://www.w3.org/2000/svg',g=document.createElementNS(ns,'g');g.innerHTML=circles;svg.append(g);const txt=document.createElementNS(ns,'text');txt.setAttribute('x',W-30);txt.setAttribute('y',51);txt.setAttribute('text-anchor','end');txt.setAttribute('fill',C.navy);txt.textContent=`rAB = ${fmt(r,2)}`;svg.append(txt);svg.onpointermove=null;svg.onkeydown=null;svg.removeAttribute('tabindex');$(id).insertAdjacentHTML('beforeend',`<p class="scatter-note">每 1 秒绘一个配对点；r 使用全部 0.25 秒采样。${outside?`有 ${outside} 个配对点超出固定范围。`:''}</p>`);if(outside)$(id).insertAdjacentHTML('beforeend',`<div class="clip-warning">${outside} 个配对点超出固定范围</div>`);
+}
+layout=function(){stopScan();if(tab==='gust')gustLayout();else if(tab==='correlation')correlationLayout();else{oldLayout();if(tab==='turbulence')$('content').insertAdjacentHTML('afterbegin',definition('湍流度是什么？','先用标准差 σᵤ 衡量风速起伏的大小，再除以平均风速 Ū。这个比值叫湍流度，常写成百分数。','Iᵤ = σᵤ ÷ Ū × 100%')+'<div class="plain-example" id="turbBeginnerExample"></div><details class="learn-more compact-more"><summary>标准差 σᵤ 怎么算？</summary><p>每个风速减去平均值 → 分别平方 → 求平均 → 开平方。这样，正、负起伏不会互相抵消。单位仍是 m/s。</p><p>σᵤ = √[平均(u′²)]。σ 不是最大起伏；湍流度也不是阵风系数。</p></details>');if(tab==='wind')$('content').insertAdjacentHTML('afterbegin','<div class="first-definitions"><p><b>平均风速：</b>这 10 分钟所有风速的平均值。</p><p><b>脉动风速：</b>当前风速减去平均值，有正也有负。</p></div>')};
+ if(tab==='spectrum')$('content').insertAdjacentHTML('afterbegin',definition('风谱是什么？','它告诉我们：风速起伏的能量，主要分布在慢变化，还是快变化上。频率越低，变化越慢；频率越高，变化越快。'));
+};
+update=function(){
+ oldUpdate();
+ $('freeze').disabled=tab==='correlation';$('freeze').title=tab==='correlation'?'本页直接比较同一时刻的三个测点':'';if(tab==='correlation')$('compareNotice').hidden=true;
+ if(tab==='gust'){const newKey=[s.mean,s.intensity,s.length,s.seed,s.window].join('|');if(scanKey!==newKey){stopScan();scan=0;scanKey=newKey}const g=E.movingGust(record,s.window),start=Math.max(0,Math.min(540,Math.floor(g.t[g.index]-30))),end=start+60,indices=g.t.map((_,i)=>i).filter(i=>g.t[i]-s.window/2>=start&&g.t[i]+s.window/2<=end);scanCache={g,start,end,indices};renderScan();$('gustExample').innerHTML=`这段风：<b>${fmt(g.max,2)} ÷ ${fmt(record.mean,2)} = ${fmt(g.factor,2)}</b>。<br>也就是：阵风风速约为平均风速的 <b>${fmt(g.factor,2)} 倍</b>，约高 <b>${fmt((g.factor-1)*100,1)}%</b>。`}
+ if(tab==='turbulence')$('turbBeginnerExample').innerHTML=`当前：标准差 <b>${fmt(record.sigma,2)} m/s</b>，平均风速 <b>${fmt(record.mean,2)} m/s</b>。<br>湍流度 = ${fmt(record.sigma,2)} ÷ ${fmt(record.mean,2)} × 100% = <b>${fmt(record.intensity*100,1)}%</b>。<span class="note">表示标准差是平均风速的 ${fmt(record.intensity*100,1)}%，不是说每次起伏都恰好这么大。</span>`;
+ if(tab==='correlation')renderCorrelation();
+ if($('pagerPosition')){const i=chapters.findIndex(c=>c[0]===tab);$('pagerPosition').textContent=`${i+1} / ${chapters.length}`;$('previousLesson').disabled=i===0;$('nextLesson').disabled=i===chapters.length-1;$('nextLesson').textContent=i===chapters.length-1?'本课完成':'下一步：'+chapters[i+1][1]}
+};
+navigate=function(key){stopScan();scan=0;oldNavigate(key)};
+reset=function(){spacing=40;scan=0;stopScan();oldReset()};$('reset').onclick=$('resetMobile').onclick=reset;
+const pager=document.createElement('div');pager.className='lesson-pager';pager.innerHTML='<button class="button" id="previousLesson">← 上一步</button><span id="pagerPosition"></span><button class="button" id="nextLesson"></button>';$('content').after(pager);
+$('previousLesson').onclick=()=>{const i=chapters.findIndex(c=>c[0]===tab);if(i>0){location.hash=chapters[i-1][0];window.scrollTo({top:0,behavior:'smooth'})}};
+$('nextLesson').onclick=()=>{const i=chapters.findIndex(c=>c[0]===tab);if(i<chapters.length-1){location.hash=chapters[i+1][0];window.scrollTo({top:0,behavior:'smooth'})}};
+bindNavigation();navigate(location.hash.slice(1));
+const oldDownload=$('downloadData').onclick;
+$('downloadData').onclick=()=>{if(tab!=='correlation'){oldDownload();return}const m=multiCache;let csv='\ufeff时间_s,A风速_m_s,B风速_m_s,C风速_m_s,A脉动_m_s,B脉动_m_s,C脉动_m_s\n';for(let i=0;i<m.t.length;i++)csv+=[m.t[i],...m.series.map(p=>p.u[i]),...m.series.map(p=>p.v[i])].join(',')+'\n';download(csv,'text/csv;charset=utf-8',`三点相关风-间距${spacing}m-样本${s.seed}.csv`);toast('已下载三个测点的完整 10 分钟风速')};
+</script></body></html>
