@@ -2,7 +2,7 @@
 
 面向初学者，支持电脑和手机。单文件 HTML，无外部运行依赖。
 
-**在线学习：** https://syzhaoln-stack.github.io/bridge-wind-classroom/?v=4
+**在线学习：** https://syzhaoln-stack.github.io/bridge-wind-classroom/?v=5
 
 ## 七个实验
 
@@ -29,3 +29,5 @@
 ## 更新
 
 2026-09-10 · v4：重做风谱与时程、独立逐段合成、区分传播时延与空间相关。修改主分支 `index.html` 后 GitHub Pages 自动更新。
+
+新增 v5：风谱坐标支持双线性、双对数、横轴对数；谱值可切换 S(f) 与 fS(f)/σ²。图旁展示 Kaimal / von Kármán 公式，并补充符号解释、教学谱公式及有限频带校准说明。
